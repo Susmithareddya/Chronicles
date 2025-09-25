@@ -126,25 +126,25 @@ const KnowledgeBaseDashboard = () => {
             {/* Glass Search Bar */}
             <div className="flex-1 max-w-lg">
               <div className="relative">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white/70 w-5 h-5" />
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-600 w-5 h-5" />
                 <Input 
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search stories, topics, or insights..."
-                  className="glass-input pl-12 h-12 text-white/90 placeholder:text-white/60 border-white/20 focus:border-white/40 text-base"
+                  className="glass-input pl-12 h-12 text-slate-800 placeholder:text-slate-500 text-base font-sf-pro"
                 />
               </div>
             </div>
 
-            {/* Glass Quick Stats */}
-            <div className="hidden lg:flex items-center gap-6 text-sm">
-              <div className="flex items-center gap-2 glass-card px-4 py-2">
-                <FileText className="w-4 h-4 text-white/80" />
-                <span className="font-semibold text-white/90">86 Stories</span>
+            {/* Apple Glass Quick Stats */}
+            <div className="hidden lg:flex items-center gap-4 text-sm">
+              <div className="flex items-center gap-3 glass-card px-6 py-3">
+                <FileText className="w-4 h-4 text-slate-600" />
+                <span className="font-medium text-slate-700 font-sf-pro">86 Stories</span>
               </div>
-              <div className="flex items-center gap-2 glass-card px-4 py-2">
-                <Users className="w-4 h-4 text-white/80" />
-                <span className="font-semibold text-white/90">12 Authors</span>
+              <div className="flex items-center gap-3 glass-card px-6 py-3">
+                <Users className="w-4 h-4 text-slate-600" />
+                <span className="font-medium text-slate-700 font-sf-pro">12 Authors</span>
               </div>
             </div>
           </div>
@@ -152,11 +152,11 @@ const KnowledgeBaseDashboard = () => {
       </header>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Glass Page Header */}
+        {/* Apple Glass Page Header */}
         <div className="mb-12">
-          <h2 className="text-4xl font-bold text-white mb-4">
+          <h2 className="text-4xl font-semibold text-slate-800 mb-4 font-sf-pro">
             Stories of <span 
-              className="text-white/80 cursor-pointer hover:text-white transition-colors"
+              className="text-blue-600 cursor-pointer hover:text-blue-700 transition-colors"
               onClick={() => setShowChristopherCard(!showChristopherCard)}
             >
               Christopher Becker
@@ -175,43 +175,43 @@ const KnowledgeBaseDashboard = () => {
                       className="w-16 h-16 rounded-full object-cover border-2 border-white/30"
                     />
                     <div>
-                      <h3 className="text-xl font-semibold text-white">Christopher Becker</h3>
-                      <p className="text-white/80 font-medium">Head of Product</p>
+                      <h3 className="text-xl font-semibold text-slate-800 font-sf-pro">Christopher Becker</h3>
+                      <p className="text-blue-600 font-medium font-sf-pro">Head of Product</p>
                     </div>
                   </div>
                   <button 
                     onClick={() => setShowChristopherCard(false)}
-                    className="text-white/60 hover:text-white/90 transition-colors"
+                    className="text-slate-400 hover:text-slate-600 transition-colors"
                   >
                     <X className="w-5 h-5" />
                   </button>
                 </div>
                 
                 <div className="space-y-4">
-                  <div className="flex items-center gap-3 text-white/70">
+                  <div className="flex items-center gap-3 text-slate-600">
                     <MapPin className="w-4 h-4" />
-                    <span className="text-sm">Product Development Department</span>
+                    <span className="text-sm font-sf-pro">Product Development Department</span>
                   </div>
-                  <div className="flex items-center gap-3 text-white/70">
+                  <div className="flex items-center gap-3 text-slate-600">
                     <Mail className="w-4 h-4" />
-                    <span className="text-sm">christopher.becker@company.com</span>
+                    <span className="text-sm font-sf-pro">christopher.becker@company.com</span>
                   </div>
-                  <div className="flex items-center gap-3 text-white/70">
+                  <div className="flex items-center gap-3 text-slate-600">
                     <Phone className="w-4 h-4" />
-                    <span className="text-sm">+1 (555) 123-4567</span>
+                    <span className="text-sm font-sf-pro">+1 (555) 123-4567</span>
                   </div>
                 </div>
               </CardContent>
             </Card>
           )}
-          <p className="text-xl text-white/80 max-w-3xl">
+          <p className="text-xl text-slate-600 max-w-3xl font-sf-pro font-light">
             Capturing and organizing critical knowledge from our Head of Product
           </p>
         </div>
 
-        {/* Glass Knowledge Categories */}
+        {/* Apple Glass Knowledge Categories */}
         <div className="mb-16">
-          <h3 className="text-2xl font-semibold text-white mb-8">Knowledge Categories</h3>
+          <h3 className="text-2xl font-semibold text-slate-800 mb-8 font-sf-pro">Knowledge Categories</h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {knowledgeCategories.map((category, index) => (
@@ -229,25 +229,25 @@ const KnowledgeBaseDashboard = () => {
                           <category.icon className={cn("w-6 h-6", category.iconColor)} />
                         </div>
                         <div className="flex-1">
-                          <h4 className="font-semibold text-white text-xl leading-tight">
+                          <h4 className="font-semibold text-slate-800 text-xl leading-tight font-sf-pro">
                             {category.title}
                           </h4>
                         </div>
                       </div>
-                      <ChevronRight className="w-6 h-6 text-white/60 mt-1" />
+                      <ChevronRight className="w-6 h-6 text-slate-400 mt-1" />
                     </div>
 
                     {/* Description */}
-                    <p className="text-white/80 text-base leading-relaxed">
+                    <p className="text-slate-600 text-base leading-relaxed font-sf-pro">
                       {category.description}
                     </p>
 
-                    {/* Glass Stats */}
+                    {/* Apple Glass Stats */}
                     <div className="space-y-6">
                       <div className="flex items-end justify-between">
                         <div className="text-left">
-                          <span className="text-sm font-medium text-white/70 block mb-2">Total Stories</span>
-                          <span className="text-3xl font-bold text-white">{category.totalStories}</span>
+                          <span className="text-sm font-medium text-slate-500 block mb-2 font-sf-pro">Total Stories</span>
+                          <span className="text-3xl font-semibold text-slate-800 font-sf-pro">{category.totalStories}</span>
                         </div>
                         <div className="self-end">
                           <StatusIndicators counts={category.statusCounts} />
@@ -271,13 +271,13 @@ const KnowledgeBaseDashboard = () => {
                   <AlertTriangle className="w-7 h-7 text-amber-600" />
                 </div>
                 <div className="flex-1">
-                  <h4 className="font-semibold text-amber-900 text-xl mb-3">
+                  <h4 className="font-semibold text-amber-900 text-xl mb-3 font-sf-pro">
                     Knowledge Gaps Identified
                   </h4>
-                  <p className="text-amber-800 text-base mb-4">
+                  <p className="text-amber-800 text-base mb-4 font-sf-pro font-light">
                     We've identified areas where critical knowledge may be missing or incomplete.
                   </p>
-                  <Badge className="bg-amber-100/80 text-amber-800 border-amber-300/50 hover:bg-amber-200/80 px-4 py-2 text-sm">
+                  <Badge className="bg-amber-50 text-amber-700 px-4 py-2 text-sm font-sf-pro font-medium rounded-full border-none">
                     4 gaps found
                   </Badge>
                 </div>
@@ -293,13 +293,13 @@ const KnowledgeBaseDashboard = () => {
                   <Sparkles className="w-7 h-7 text-blue-600" />
                 </div>
                 <div className="flex-1">
-                  <h4 className="font-semibold text-blue-900 text-xl mb-3">
+                  <h4 className="font-semibold text-blue-900 text-xl mb-3 font-sf-pro">
                     AI Suggestions
                   </h4>
-                  <p className="text-blue-800 text-base mb-4">
+                  <p className="text-blue-800 text-base mb-4 font-sf-pro font-light">
                     Our AI has analyzed your content and found opportunities for improvement.
                   </p>
-                  <Badge className="bg-blue-100/80 text-blue-800 border-blue-300/50 hover:bg-blue-200/80 px-4 py-2 text-sm">
+                  <Badge className="bg-blue-50 text-blue-700 px-4 py-2 text-sm font-sf-pro font-medium rounded-full border-none">
                     5 suggestions
                   </Badge>
                 </div>
@@ -308,18 +308,18 @@ const KnowledgeBaseDashboard = () => {
           </Card>
         </div>
 
-        {/* Glass Quick Actions */}
+        {/* Apple Glass Quick Actions */}
         <div className="mt-12">
           <div className="flex flex-wrap gap-4">
-            <Button className="glass-card hover:bg-gradient-glass-hover text-white border-white/20 px-6 py-3 h-auto">
+            <Button className="glass-card text-slate-700 px-8 py-4 h-auto font-sf-pro font-medium rounded-full hover:scale-105 transition-transform">
               <FileText className="w-5 h-5 mr-3" />
               Add New Story
             </Button>
-            <Button className="glass-card hover:bg-gradient-glass-hover text-white border-white/20 px-6 py-3 h-auto">
+            <Button className="glass-card text-slate-700 px-8 py-4 h-auto font-sf-pro font-medium rounded-full hover:scale-105 transition-transform">
               <BarChart3 className="w-5 h-5 mr-3" />
               View Analytics
             </Button>
-            <Button className="glass-card hover:bg-gradient-glass-hover text-white border-white/20 px-6 py-3 h-auto">
+            <Button className="glass-card text-slate-700 px-8 py-4 h-auto font-sf-pro font-medium rounded-full hover:scale-105 transition-transform">
               <Users className="w-5 h-5 mr-3" />
               Manage Contributors
             </Button>
