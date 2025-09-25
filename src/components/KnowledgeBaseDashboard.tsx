@@ -98,10 +98,6 @@ const KnowledgeBaseDashboard = () => {
          <span className="text-amber-600 font-medium text-sm font-sf-pro">{counts.progress}</span>
          <div className="status-dot status-progress"></div>
        </div>
-       <div className="flex items-center gap-2">
-         <span className="text-rose-600 font-medium text-sm font-sf-pro">{counts.incomplete}</span>
-         <div className="status-dot status-incomplete"></div>
-       </div>
      </div>
   );
 
