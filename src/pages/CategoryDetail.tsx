@@ -55,14 +55,9 @@ const CategoryDetail = () => {
     }
   };
 
-    return (
-      <div className="min-h-screen relative overflow-hidden">
-        {/* Liquid Glass Background Gradient Splash */}
-        <div className="fixed top-0 right-0 w-96 h-96 opacity-20 pointer-events-none">
-          <div className="liquid-glass-splash"></div>
-        </div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
           <Link 
@@ -86,19 +81,19 @@ const CategoryDetail = () => {
           {stories.map((story) => (
             <Card 
               key={story.id}
-              className="glass-card cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1"
+              className="story-detail-card cursor-pointer transition-all duration-200 hover:shadow-lg border border-slate-200 hover:border-slate-300 bg-white"
               onClick={() => setSelectedStory(story.id)}
             >
-              <CardContent className="p-8">
+              <CardContent className="p-6">
                 {/* Story Header */}
-                <div className="mb-6">
-                  <h3 className="font-semibold text-slate-800 text-xl mb-3 font-sf-pro leading-tight">
+                <div className="mb-4">
+                  <h3 className="font-semibold text-slate-800 text-lg mb-2 font-sf-pro leading-tight">
                     {story.title}
                   </h3>
                   
                   <Badge 
                     className={cn(
-                      "mb-4 text-sm px-4 py-2 rounded-full border font-sf-pro font-medium backdrop-blur-sm",
+                      "mb-3 text-sm px-3 py-1 rounded-full border font-sf-pro font-medium",
                       getStatusColor(story.status)
                     )}
                   >
@@ -107,15 +102,13 @@ const CategoryDetail = () => {
                 </div>
 
                 {/* Date */}
-                <div className="flex items-center gap-3 text-slate-500 mb-6">
-                  <div className="p-2 rounded-xl bg-slate-100/80 backdrop-blur-sm">
-                    <Calendar className="w-4 h-4" />
-                  </div>
-                  <span className="text-base font-sf-pro font-medium">{story.date}</span>
+                <div className="flex items-center gap-2 text-slate-500 mb-4">
+                  <Calendar className="w-4 h-4" />
+                  <span className="text-sm font-sf-pro">{story.date}</span>
                 </div>
 
                 {/* Description */}
-                <p className="text-slate-600 text-base leading-relaxed font-sf-pro mb-6 line-clamp-3">
+                <p className="text-slate-600 text-sm leading-relaxed font-sf-pro mb-4 line-clamp-3">
                   {story.description}
                 </p>
 
@@ -124,7 +117,7 @@ const CategoryDetail = () => {
                   {story.tags.map((tag, index) => (
                     <Badge 
                       key={index}
-                      className="glass-tag text-sm px-3 py-2 rounded-xl font-sf-pro font-medium hover:scale-105 transition-transform cursor-pointer"
+                      className="bg-blue-50 text-blue-700 text-xs px-2 py-1 rounded-md border border-blue-200 font-sf-pro font-normal hover:bg-blue-100 transition-colors"
                     >
                       {tag}
                     </Badge>
