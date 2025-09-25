@@ -207,6 +207,32 @@
     outline-offset: 2px;
   }
 
+  /* Liquid Glass Logo */
+  .logo-container {
+    position: relative;
+  }
+
+  .logo-main {
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+
+  .logo-subtitle {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #64748b;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
   /* Liquid Glass Background Splash */
   .liquid-glass-splash {
     width: 100%;

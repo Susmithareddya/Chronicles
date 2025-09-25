@@ -120,11 +120,14 @@ const KnowledgeBaseDashboard = () => {
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             {/* Logo */}
             <div className="flex items-center space-x-3">
-              <img 
-                src="/src/assets/logo_chronicles_1.svg" 
-                alt="CHRONICLES" 
-                className="h-12 w-auto"
-              />
+              <div className="logo-container">
+                <div className="logo-main font-sf-pro font-bold text-slate-800">
+                  Chronicles
+                </div>
+                <div className="logo-subtitle font-sf-pro font-medium text-slate-500">
+                  Corporate Knowledge Base
+                </div>
+              </div>
             </div>
             
             {/* Glass Search Bar */}
