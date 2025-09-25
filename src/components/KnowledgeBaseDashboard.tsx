@@ -87,7 +87,7 @@ const KnowledgeBaseDashboard = () => {
   ];
 
   const StatusIndicators = ({ counts }: { counts: { complete: number, progress: number, incomplete: number } }) => (
-    <div className="flex items-end gap-2">
+    <div className="flex items-end gap-2 mt-2">
       <div className="flex items-center gap-1">
         <span className="text-green-700 font-semibold text-sm">{counts.complete}</span>
         <div className="status-dot status-complete"></div>
