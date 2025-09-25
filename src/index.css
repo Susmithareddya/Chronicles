@@ -149,15 +149,23 @@
     border: none;
     border-radius: 28px;
     box-shadow: var(--glass-shadow);
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all 0.3s ease-out;
   }
 
   .knowledge-card:hover {
     transform: translateY(-2px) scale(1.005);
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(168, 85, 247, 0.12) 50%, rgba(236, 72, 153, 0.1) 100%);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(99, 102, 241, 0.12) 50%, rgba(139, 92, 246, 0.08) 100%);
     backdrop-filter: blur(40px);
     -webkit-backdrop-filter: blur(40px);
-    box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.15);
+    box-shadow: 0 20px 40px -10px rgba(59, 130, 246, 0.15);
+  }
+
+  .knowledge-card .card-content,
+  .knowledge-card .card-icon,
+  .knowledge-card .card-description,
+  .knowledge-card .card-stats,
+  .knowledge-card .chevron-icon {
+    transition: color 0.3s ease-out;
   }
 
   .knowledge-card:hover .card-content {
