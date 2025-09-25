@@ -20,7 +20,8 @@ import {
   Mail,
   Phone,
   MapPin,
-  X
+  X,
+  GraduationCap
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -32,7 +33,7 @@ const KnowledgeBaseDashboard = () => {
     {
       title: "Onboarding Essentials",
       description: "Critical knowledge for newcomers replacing Christopher — processes, workflows, and key relationships",
-      icon: Users,
+      icon: GraduationCap,
       iconColor: "text-blue-600",
       bgColor: "bg-blue-50",
       totalStories: 5,
