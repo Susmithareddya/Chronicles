@@ -276,10 +276,10 @@ const KnowledgeBaseDashboard = () => {
         {/* Glass Action Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Knowledge Gaps */}
-          <Card 
-            className="alert-warning"
-            onClick={() => console.log('Knowledge gaps clicked')}
-          >
+          <Link to="/knowledge-gaps">
+            <Card 
+              className="alert-warning cursor-pointer"
+            >
             <CardContent className="p-8">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0">
@@ -299,12 +299,13 @@ const KnowledgeBaseDashboard = () => {
               </div>
             </CardContent>
           </Card>
+          </Link>
 
           {/* AI Suggestions */}
-          <Card 
-            className="alert-info"
-            onClick={() => console.log('AI suggestions clicked')}
-          >
+          <Link to="/ai-suggestions">
+            <Card 
+              className="alert-info cursor-pointer"
+            >
             <CardContent className="p-8">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0">
@@ -324,6 +325,7 @@ const KnowledgeBaseDashboard = () => {
               </div>
             </CardContent>
           </Card>
+          </Link>
         </div>
 
         {/* Apple Glass Quick Actions */}
