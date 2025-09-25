@@ -102,7 +102,7 @@ const KnowledgeGaps = () => {
           {knowledgeGaps.map((gap) => (
             <Card 
               key={gap.id}
-              className="bg-white/90 backdrop-blur-xl border border-white/20 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 glass-card"
+              className="bg-white backdrop-blur-xl border border-white/20 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 glass-card"
             >
               <CardContent className="p-8">
                 {/* Header */}
