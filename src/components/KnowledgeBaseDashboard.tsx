@@ -229,7 +229,7 @@ const KnowledgeBaseDashboard = () => {
                           <category.icon className={cn("w-5 h-5", category.iconColor)} />
                         </div>
                         <div className="flex-1">
-                          <h4 className="font-semibold text-gray-900 text-base leading-tight">
+                          <h4 className="font-semibold text-gray-900 text-lg leading-tight">
                             {category.title}
                           </h4>
                         </div>
