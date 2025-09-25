@@ -228,23 +228,12 @@
   }
 
   .logo-c-outline {
-    width: 44px;
-    height: 22px;
+    width: 28px;
+    height: 44px;
     background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #06b6d4 100%);
-    border-radius: 22px 22px 0 0;
+    border-radius: 0 22px 22px 0;
     position: relative;
     box-shadow: 0 4px 16px rgba(59, 130, 246, 0.25);
-  }
-
-  .logo-c-outline::before {
-    content: '';
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    right: 2px;
-    bottom: 0;
-    background: white;
-    border-radius: 20px 20px 0 0;
   }
 
   .logo-container {
