@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -31,17 +32,6 @@ import { cn } from "@/lib/utils";
 const KnowledgeBaseDashboard = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [showChristopherCard, setShowChristopherCard] = useState(false);
-  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set());
-
-  const toggleCategory = (categoryTitle: string) => {
-    const newExpanded = new Set(expandedCategories);
-    if (newExpanded.has(categoryTitle)) {
-      newExpanded.delete(categoryTitle);
-    } else {
-      newExpanded.add(categoryTitle);
-    }
-    setExpandedCategories(newExpanded);
-  };
 
   const knowledgeCategories = [
     {
@@ -236,11 +226,14 @@ const KnowledgeBaseDashboard = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {knowledgeCategories.map((category, index) => (
-              <div key={category.title} className="space-y-4">
+              <Link 
+                key={category.title}
+                to={`/category/${encodeURIComponent(category.title)}`}
+                className="block"
+              >
                 <Card 
                   className="knowledge-card animate-slide-up cursor-pointer h-full"
                   style={{ animationDelay: `${index * 100}ms` }}
-                  onClick={() => toggleCategory(category.title)}
                 >
                  <CardContent className="p-8 flex flex-col h-full">
                     <div className="flex-1 space-y-6">
@@ -256,11 +249,7 @@ const KnowledgeBaseDashboard = () => {
                             </h4>
                           </div>
                         </div>
-                        {expandedCategories.has(category.title) ? (
-                          <ChevronDown className="w-6 h-6 text-slate-400 flex-shrink-0 chevron-icon transition-colors duration-300" />
-                        ) : (
-                          <ChevronRight className="w-6 h-6 text-slate-400 flex-shrink-0 chevron-icon transition-colors duration-300" />
-                        )}
+                        <ChevronRight className="w-6 h-6 text-slate-400 flex-shrink-0 chevron-icon transition-colors duration-300" />
                       </div>
 
                       {/* Description */}
@@ -283,23 +272,7 @@ const KnowledgeBaseDashboard = () => {
                     </div>
                  </CardContent>
                </Card>
-
-               {/* Stories List - Outside the card to maintain consistent card heights */}
-               {expandedCategories.has(category.title) && (
-                 <div className="space-y-3 animate-fade-in pl-4">
-                   <h5 className="text-sm font-semibold text-slate-700 font-sf-pro mb-3">
-                     Stories in {category.title}
-                   </h5>
-                   {category.stories.map((story) => (
-                     <StoryCard 
-                       key={story.id} 
-                       story={story}
-                       onClick={() => console.log('Story clicked:', story.title)}
-                     />
-                   ))}
-                 </div>
-               )}
-              </div>
+              </Link>
             ))}
           </div>
         </div>
