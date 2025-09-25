@@ -30,14 +30,14 @@ const KnowledgeBaseDashboard = () => {
 
   const knowledgeCategories = [
     {
-      title: "Leadership Insights",
-      description: "Management philosophy, team building, and decision-making frameworks",
-      icon: Crown,
-      iconColor: "text-orange-600",
-      bgColor: "bg-orange-50",
-      totalStories: 15,
-      completionRate: 80,
-      statusCounts: { complete: 12, progress: 2, incomplete: 1 }
+      title: "Onboarding Essentials",
+      description: "Critical knowledge for newcomers replacing Christopher - processes, workflows, and key relationships",
+      icon: Users,
+      iconColor: "text-blue-600",
+      bgColor: "bg-blue-50",
+      totalStories: 20,
+      completionRate: 85,
+      statusCounts: { complete: 17, progress: 2, incomplete: 1 }
     },
     {
       title: "Project Histories", 
