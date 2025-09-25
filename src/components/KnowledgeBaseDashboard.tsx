@@ -128,7 +128,11 @@ const KnowledgeBaseDashboard = () => {
             {/* Logo */}
             <div className="flex items-center space-x-3">
               <div className="logo-icon">
-                <div className="logo-c-outline"></div>
+                <img 
+                  src="/src/assets/logo-sign.svg" 
+                  alt="Chronicles Logo" 
+                  className="w-12 h-12 object-contain"
+                />
               </div>
               <div className="logo-container">
                 <div className="logo-main font-sf-pro font-bold text-slate-800">
