@@ -150,7 +150,7 @@ const KnowledgeBaseDashboard = () => {
         {/* Page Header */}
         <div className="mb-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-3">
-            Stories of <span className="text-primary">Christopher Becker</span>
+            Stories of <span className="text-blue-600">Christopher Becker</span>
           </h2>
           <p className="text-lg text-gray-700 max-w-3xl">
             Capturing and organizing critical knowledge from our Head of Product
