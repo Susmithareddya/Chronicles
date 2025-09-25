@@ -166,15 +166,15 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.04) 0%, rgba(99, 102, 241, 0.02) 55%, rgba(139, 92, 246, 0.01) 100%);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.12) 0%, rgba(99, 102, 241, 0.08) 35%, rgba(139, 92, 246, 0.06) 70%, rgba(6, 182, 212, 0.04) 100%);
     opacity: 0;
     transition: opacity 0.3s ease-out;
     pointer-events: none;
   }
 
   .knowledge-card:hover {
-    transform: translateY(-2px) scale(1.01);
-    box-shadow: 0 12px 32px -4px rgba(59, 130, 246, 0.15);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 20px 40px -8px rgba(59, 130, 246, 0.25), 0 8px 16px -4px rgba(99, 102, 241, 0.15);
   }
 
   .knowledge-card:hover::before {
