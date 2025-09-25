@@ -167,11 +167,13 @@ const KnowledgeBaseDashboard = () => {
           {showChristopherCard && (
             <Card className="mb-6 max-w-md bg-white shadow-lg border border-gray-200">
               <CardContent className="p-6">
-                <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-4">
-                    <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
-                      CB
-                    </div>
+                    <img 
+                      src="/src/assets/christopher-becker-avatar.jpg" 
+                      alt="Christopher Becker" 
+                      className="w-16 h-16 rounded-full object-cover border-2 border-blue-200"
+                    />
                     <div>
                       <h3 className="text-xl font-semibold text-gray-900">Christopher Becker</h3>
                       <p className="text-blue-600 font-medium">Head of Product</p>
