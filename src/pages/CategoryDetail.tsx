@@ -84,7 +84,7 @@ const CategoryDetail = () => {
           {stories.map((story) => (
             <Card 
               key={story.id}
-              className="cursor-pointer group relative overflow-hidden bg-white border border-slate-200 hover:border-slate-300 rounded-3xl shadow-md hover:shadow-lg transition-all duration-300"
+              className="cursor-pointer group relative overflow-hidden bg-white/95 backdrop-blur-xl border border-white/20 hover:border-white/30 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 glass-card"
               onClick={() => setSelectedStory(story.id)}
             >
               <CardContent className="p-6 relative z-10">
@@ -97,8 +97,8 @@ const CategoryDetail = () => {
                   <Badge 
                     className={cn(
                       "glass-status-badge px-2 py-1 text-xs font-medium rounded-full border-0 backdrop-blur-md transition-all duration-200",
-                      story.status === 'complete' && "bg-emerald-100/80 text-emerald-800 shadow-emerald-200/50",
-                      story.status === 'progress' && "bg-amber-100/80 text-amber-800 shadow-amber-200/50"
+                      story.status === 'complete' && "bg-emerald-100/80 text-emerald-700 shadow-emerald-200/50",
+                      story.status === 'progress' && "bg-amber-100/80 text-amber-700 shadow-amber-200/50"
                     )}
                   >
                     {getStatusLabel(story.status)}
