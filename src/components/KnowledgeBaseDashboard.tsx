@@ -5,16 +5,16 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { 
   Search, 
-  Crown,
-  Truck,
-  Shield,
-  Handshake,
-  Target,
-  Lightbulb,
-  AlertTriangle,
+  Star,
+  Package,
+  ShieldCheck,
+  Users2,
+  Crosshair,
+  Zap,
+  TriangleAlert,
   Sparkles,
   ChevronRight,
-  BarChart3,
+  TrendingUp,
   FileText,
   Users,
   Mail,
@@ -42,7 +42,7 @@ const KnowledgeBaseDashboard = () => {
     {
       title: "Project Histories", 
       description: "Major initiatives, launches, and transformation programs",
-      icon: Truck,
+      icon: Package,
       iconColor: "text-red-600",
       bgColor: "bg-red-50",
       totalStories: 23,
@@ -52,7 +52,7 @@ const KnowledgeBaseDashboard = () => {
     {
       title: "Crisis Management",
       description: "Handling challenges, market downturns, and operational disruptions", 
-      icon: Shield,
+      icon: ShieldCheck,
       iconColor: "text-blue-600",
       bgColor: "bg-blue-50",
       totalStories: 8,
@@ -62,7 +62,7 @@ const KnowledgeBaseDashboard = () => {
     {
       title: "Supplier Relations",
       description: "Key partnerships, negotiations, and supply chain strategies",
-      icon: Handshake, 
+      icon: Users2, 
       iconColor: "text-amber-600",
       bgColor: "bg-amber-50",
       totalStories: 18,
@@ -72,7 +72,7 @@ const KnowledgeBaseDashboard = () => {
     {
       title: "Strategy Lessons",
       description: "Market analysis, competitive positioning, and long-term planning",
-      icon: Target,
+      icon: Crosshair,
       iconColor: "text-pink-600", 
       bgColor: "bg-pink-50",
       totalStories: 12,
@@ -82,7 +82,7 @@ const KnowledgeBaseDashboard = () => {
     {
       title: "Innovation & Technology",
       description: "R&D decisions, technology adoption, and future trends",
-      icon: Lightbulb,
+      icon: Zap,
       iconColor: "text-yellow-600",
       bgColor: "bg-yellow-50",
       totalStories: 10, 
@@ -272,7 +272,7 @@ const KnowledgeBaseDashboard = () => {
             <CardContent className="p-8">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0">
-                  <AlertTriangle className="w-7 h-7 text-amber-600" />
+                  <TriangleAlert className="w-7 h-7 text-amber-600" />
                 </div>
                 <div className="flex-1">
                   <h4 className="font-semibold text-amber-900 text-xl mb-3 font-sf-pro">
@@ -320,7 +320,7 @@ const KnowledgeBaseDashboard = () => {
               Add New Story
             </Button>
             <Button className="glass-card text-slate-700 px-8 py-4 h-auto font-sf-pro font-medium rounded-full hover:scale-105 transition-transform bg-white/80 hover:bg-white/90">
-              <BarChart3 className="w-5 h-5 mr-3" />
+              <TrendingUp className="w-5 h-5 mr-3" />
               View Analytics
             </Button>
             <Button className="glass-card text-slate-700 px-8 py-4 h-auto font-sf-pro font-medium rounded-full hover:scale-105 transition-transform bg-white/80 hover:bg-white/90">
