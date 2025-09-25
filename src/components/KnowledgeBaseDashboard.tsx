@@ -109,7 +109,11 @@ const KnowledgeBaseDashboard = () => {
   );
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative overflow-hidden">
+      {/* Liquid Glass Background Gradient Splash */}
+      <div className="fixed top-0 right-0 w-96 h-96 opacity-30 pointer-events-none">
+        <div className="liquid-glass-splash"></div>
+      </div>
       {/* Glass Header */}
       <header className="glass-header">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
