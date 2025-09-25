@@ -67,7 +67,7 @@ const KnowledgeGaps = () => {
       {/* Liquid Glass Background Splash */}
       <div className="absolute inset-0 liquid-glass-splash opacity-40"></div>
       
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-amber-50/30">
         {/* Header */}
         <div className="mb-8">
           <Link 
