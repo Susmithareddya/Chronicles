@@ -129,7 +129,7 @@ const KnowledgeBaseDashboard = () => {
             <div className="flex items-center space-x-3">
               <div className="logo-icon">
                 <img 
-                  src="/src/assets/logo-sign.svg" 
+                  src="/src/assets/logo-sign-2.svg" 
                   alt="Chronicles Logo" 
                   className="w-12 h-12 object-contain"
                 />
