@@ -232,9 +232,9 @@ const KnowledgeBaseDashboard = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {knowledgeCategories.map((category, index) => (
-              <div key={category.title}>
+              <div key={category.title} className="space-y-4">
                 <Card 
-                  className="knowledge-card animate-slide-up cursor-pointer h-auto"
+                  className="knowledge-card animate-slide-up cursor-pointer h-full"
                   style={{ animationDelay: `${index * 100}ms` }}
                   onClick={() => toggleCategory(category.title)}
                 >
@@ -280,9 +280,12 @@ const KnowledgeBaseDashboard = () => {
                  </CardContent>
                </Card>
 
-               {/* Stories List */}
+               {/* Stories List - Outside the card to maintain consistent card heights */}
                {expandedCategories.has(category.title) && (
-                 <div className="mt-4 ml-4 space-y-3 animate-fade-in">
+                 <div className="space-y-3 animate-fade-in pl-4">
+                   <h5 className="text-sm font-semibold text-slate-700 font-sf-pro mb-3">
+                     Stories in {category.title}
+                   </h5>
                    {category.stories.map((story) => (
                      <StoryCard 
                        key={story.id} 
