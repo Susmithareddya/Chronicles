@@ -16,12 +16,17 @@ import {
   ChevronRight,
   BarChart3,
   FileText,
-  Users
+  Users,
+  Mail,
+  Phone,
+  MapPin,
+  X
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const KnowledgeBaseDashboard = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [showChristopherCard, setShowChristopherCard] = useState(false);
 
   const knowledgeCategories = [
     {
@@ -150,8 +155,53 @@ const KnowledgeBaseDashboard = () => {
         {/* Page Header */}
         <div className="mb-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-3">
-            Stories of <span className="text-blue-600">Christopher Becker</span>
+            Stories of <span 
+              className="text-blue-600 cursor-pointer hover:text-blue-800 transition-colors"
+              onClick={() => setShowChristopherCard(!showChristopherCard)}
+            >
+              Christopher Becker
+            </span>
           </h2>
+          
+          {/* Christopher Becker Card */}
+          {showChristopherCard && (
+            <Card className="mb-6 max-w-md bg-white shadow-lg border border-gray-200">
+              <CardContent className="p-6">
+                <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-center gap-4">
+                    <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
+                      CB
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900">Christopher Becker</h3>
+                      <p className="text-blue-600 font-medium">Head of Product</p>
+                    </div>
+                  </div>
+                  <button 
+                    onClick={() => setShowChristopherCard(false)}
+                    className="text-gray-400 hover:text-gray-600 transition-colors"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+                
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3 text-gray-600">
+                    <MapPin className="w-4 h-4" />
+                    <span className="text-sm">Product Development Department</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-gray-600">
+                    <Mail className="w-4 h-4" />
+                    <span className="text-sm">christopher.becker@company.com</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-gray-600">
+                    <Phone className="w-4 h-4" />
+                    <span className="text-sm">+1 (555) 123-4567</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          )}
           <p className="text-lg text-gray-700 max-w-3xl">
             Capturing and organizing critical knowledge from our Head of Product
           </p>
