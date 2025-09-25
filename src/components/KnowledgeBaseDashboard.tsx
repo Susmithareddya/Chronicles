@@ -8,7 +8,7 @@ import {
   Star,
   Package,
   ShieldCheck,
-  Users2,
+  Handshake,
   Crosshair,
   Zap,
   TriangleAlert,
@@ -60,9 +60,9 @@ const KnowledgeBaseDashboard = () => {
       statusCounts: { complete: 6, progress: 1, incomplete: 1 }
     },
     {
-      title: "Supplier Relations",
+      title: "Strategic Partnerships",
       description: "Key partnerships, negotiations, and supply chain strategies",
-      icon: Users2, 
+      icon: Handshake, 
       iconColor: "text-amber-600",
       bgColor: "bg-amber-50",
       totalStories: 18,
