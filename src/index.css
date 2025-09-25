@@ -2,65 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
-/* CHRONICLES Professional Design System - Clean Corporate Style */
+/* CHRONICLES Professional Design System - UX Optimized */
 
 @layer base {
   :root {
-    /* Clean Corporate Palette */
+    /* High Contrast Professional Palette - All HSL values */
     --background: 255 255 255;
-    --foreground: 51 65 85;
+    --foreground: 15 23 42;
 
     --card: 255 255 255;
-    --card-foreground: 51 65 85;
+    --card-foreground: 15 23 42;
 
     --popover: 255 255 255;
-    --popover-foreground: 51 65 85;
+    --popover-foreground: 15 23 42;
 
     --primary: 59 130 246;
     --primary-foreground: 255 255 255;
     --primary-hover: 37 99 235;
 
-    --secondary: 248 250 252;
-    --secondary-foreground: 51 65 85;
+    --secondary: 241 245 249;
+    --secondary-foreground: 15 23 42;
 
     --muted: 248 250 252;
-    --muted-foreground: 100 116 139;
+    --muted-foreground: 71 85 105;
 
     --accent: 99 102 241;
     --accent-foreground: 255 255 255;
 
     --success: 34 197 94;
-    --warning: 251 191 36;
+    --warning: 251 146 60;
     --error: 239 68 68;
 
     --destructive: 239 68 68;
     --destructive-foreground: 255 255 255;
 
     --border: 226 232 240;
-    --input: 241 245 249;
+    --input: 255 255 255;
     --ring: 59 130 246;
 
     --radius: 8px;
 
-    /* Professional Typography */
-    --font-heading: 'Inter', sans-serif;
-    --font-body: 'Inter', sans-serif;
-    
-    /* Clean Shadows */
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  }
-
-  .dark {
-    --background: 15 23 42;
-    --foreground: 248 250 252;
-    --card: 30 41 59;
-    --card-foreground: 248 250 252;
-    --muted: 51 65 85;
-    --muted-foreground: 148 163 184;
-    --border: 51 65 85;
-    --input: 51 65 85;
+    /* Professional shadows with proper contrast */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
   }
 }
 
@@ -70,78 +55,116 @@
   }
 
   body {
-    @apply bg-background text-foreground;
-    font-family: var(--font-body);
-    font-feature-settings: "rlig" 1, "calt" 1;
-    line-height: 1.5;
+    @apply bg-white text-slate-900;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
-    line-height: 1.25;
-  }
-
-  /* Clean scrollbar */
+  /* High contrast scrollbar */
   ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
   }
 
   ::-webkit-scrollbar-track {
-    background: hsl(var(--muted));
+    background: #f1f5f9;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: hsl(var(--border));
-    border-radius: 3px;
+    background: #cbd5e1;
+    border-radius: 4px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--muted-foreground));
+    background: #94a3b8;
   }
 
-  /* Logo Style - Clean Corporate */
-  .logo-text {
-    font-family: var(--font-heading);
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    color: hsl(var(--foreground));
-  }
-
-  /* Progress bar animations */
+  /* Progress bar with proper visibility */
   .progress-bar {
-    transition: width 1s ease-in-out;
+    transition: width 0.8s ease-in-out;
+    background: linear-gradient(90deg, #3b82f6, #1d4ed8);
   }
 
-  /* Status indicators */
+  /* High contrast status indicators */
   .status-dot {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     display: inline-block;
+    border: 1px solid rgba(255, 255, 255, 0.2);
   }
 
-  .status-complete { background-color: hsl(var(--success)); }
-  .status-progress { background-color: hsl(var(--warning)); }
-  .status-incomplete { background-color: hsl(var(--error)); }
+  .status-complete { 
+    background-color: #22c55e;
+    box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
+  }
+  
+  .status-progress { 
+    background-color: #f59e0b;
+    box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2);
+  }
+  
+  .status-incomplete { 
+    background-color: #ef4444;
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+  }
 
-  /* Card hover effects */
+  /* Card with excellent UX */
   .knowledge-card {
-    transition: all 0.2s ease-in-out;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .knowledge-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 24px -4px rgb(0 0 0 / 0.1);
+    box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border-color: #3b82f6;
   }
 
-  /* Clean animations */
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+  /* Accessible focus states */
+  .knowledge-card:focus-within {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
   }
 
-  .animate-fade-in {
-    animation: fadeIn 0.5s ease-out forwards;
+  /* Logo with high contrast */
+  .logo-text {
+    color: #1e293b;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+
+  /* Smooth animations */
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-slide-up {
+    animation: slideInUp 0.6s ease-out forwards;
+  }
+
+  /* High contrast alert styles */
+  .alert-warning {
+    background: #fef3c7;
+    border: 1px solid #f59e0b;
+    color: #92400e;
+  }
+
+  .alert-info {
+    background: #dbeafe;
+    border: 1px solid #3b82f6;
+    color: #1e40af;
   }
 }
