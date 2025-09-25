@@ -99,6 +99,17 @@ export default {
         'gradient-bg': 'var(--gradient-bg)',
         'gradient-card': 'var(--gradient-card)',
         'gradient-hero': 'var(--gradient-hero)',
+        'gradient-glass': 'var(--gradient-glass)',
+        'gradient-glass-hover': 'var(--gradient-glass-hover)',
+      },
+      backdropBlur: {
+        xs: '2px',
+        sm: '4px',
+        md: '12px',
+        lg: '16px',
+        xl: '24px',
+        '2xl': '40px',
+        '3xl': '64px',
       },
       boxShadow: {
         'primary': 'var(--shadow-primary)',

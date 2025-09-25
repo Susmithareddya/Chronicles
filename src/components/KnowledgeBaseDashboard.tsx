@@ -109,9 +109,9 @@ const KnowledgeBaseDashboard = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header with high visibility */}
-      <header className="bg-white border-b border-gray-200 shadow-sm">
+    <div className="min-h-screen">
+      {/* Glass Header */}
+      <header className="glass-header">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             {/* Logo */}
@@ -123,80 +123,80 @@ const KnowledgeBaseDashboard = () => {
               />
             </div>
             
-            {/* Search Bar */}
+            {/* Glass Search Bar */}
             <div className="flex-1 max-w-lg">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white/70 w-5 h-5" />
                 <Input 
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search stories, topics, or insights..."
-                  className="pl-10 h-11 bg-white border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-base"
+                  className="glass-input pl-12 h-12 text-white/90 placeholder:text-white/60 border-white/20 focus:border-white/40 text-base"
                 />
               </div>
             </div>
 
-            {/* Quick Stats */}
+            {/* Glass Quick Stats */}
             <div className="hidden lg:flex items-center gap-6 text-sm">
-              <div className="flex items-center gap-2">
-                <FileText className="w-4 h-4 text-blue-600" />
-                <span className="font-semibold text-gray-900">86 Stories</span>
+              <div className="flex items-center gap-2 glass-card px-4 py-2">
+                <FileText className="w-4 h-4 text-white/80" />
+                <span className="font-semibold text-white/90">86 Stories</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Users className="w-4 h-4 text-green-600" />
-                <span className="font-semibold text-gray-900">12 Authors</span>
+              <div className="flex items-center gap-2 glass-card px-4 py-2">
+                <Users className="w-4 h-4 text-white/80" />
+                <span className="font-semibold text-white/90">12 Authors</span>
               </div>
             </div>
           </div>
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Page Header */}
-        <div className="mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-3">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Glass Page Header */}
+        <div className="mb-12">
+          <h2 className="text-4xl font-bold text-white mb-4">
             Stories of <span 
-              className="text-blue-600 cursor-pointer hover:text-blue-800 transition-colors"
+              className="text-white/80 cursor-pointer hover:text-white transition-colors"
               onClick={() => setShowChristopherCard(!showChristopherCard)}
             >
               Christopher Becker
             </span>
           </h2>
           
-          {/* Christopher Becker Card */}
+          {/* Glass Christopher Becker Card */}
           {showChristopherCard && (
-            <Card className="absolute z-50 mt-2 max-w-md bg-white shadow-lg border border-gray-200 animate-fade-in">
-              <CardContent className="p-6">
-                  <div className="flex items-start justify-between mb-4">
+            <Card className="glass-card absolute z-50 mt-4 max-w-md animate-fade-in">
+              <CardContent className="p-8">
+                  <div className="flex items-start justify-between mb-6">
                   <div className="flex items-center gap-4">
                     <img 
                       src="/src/assets/christopher-becker-avatar.jpg" 
                       alt="Christopher Becker" 
-                      className="w-16 h-16 rounded-full object-cover border-2 border-blue-200"
+                      className="w-16 h-16 rounded-full object-cover border-2 border-white/30"
                     />
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900">Christopher Becker</h3>
-                      <p className="text-blue-600 font-medium">Head of Product</p>
+                      <h3 className="text-xl font-semibold text-white">Christopher Becker</h3>
+                      <p className="text-white/80 font-medium">Head of Product</p>
                     </div>
                   </div>
                   <button 
                     onClick={() => setShowChristopherCard(false)}
-                    className="text-gray-400 hover:text-gray-600 transition-colors"
+                    className="text-white/60 hover:text-white/90 transition-colors"
                   >
                     <X className="w-5 h-5" />
                   </button>
                 </div>
                 
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3 text-gray-600">
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3 text-white/70">
                     <MapPin className="w-4 h-4" />
                     <span className="text-sm">Product Development Department</span>
                   </div>
-                  <div className="flex items-center gap-3 text-gray-600">
+                  <div className="flex items-center gap-3 text-white/70">
                     <Mail className="w-4 h-4" />
                     <span className="text-sm">christopher.becker@company.com</span>
                   </div>
-                  <div className="flex items-center gap-3 text-gray-600">
+                  <div className="flex items-center gap-3 text-white/70">
                     <Phone className="w-4 h-4" />
                     <span className="text-sm">+1 (555) 123-4567</span>
                   </div>
@@ -204,50 +204,50 @@ const KnowledgeBaseDashboard = () => {
               </CardContent>
             </Card>
           )}
-          <p className="text-lg text-gray-700 max-w-3xl">
+          <p className="text-xl text-white/80 max-w-3xl">
             Capturing and organizing critical knowledge from our Head of Product
           </p>
         </div>
 
-        {/* Knowledge Categories */}
-        <div className="mb-10">
-          <h3 className="text-lg font-semibold text-gray-600 mb-4">Knowledge Categories</h3>
+        {/* Glass Knowledge Categories */}
+        <div className="mb-16">
+          <h3 className="text-2xl font-semibold text-white mb-8">Knowledge Categories</h3>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {knowledgeCategories.map((category, index) => (
               <Card 
                 key={category.title}
-                className="knowledge-card animate-slide-up cursor-pointer hover:shadow-lg transition-all duration-300 h-full"
+                className="knowledge-card animate-slide-up cursor-pointer transition-all duration-300 h-full"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <CardContent className="p-6">
-                  <div className="space-y-5">
-                    {/* Header */}
+                <CardContent className="p-8">
+                  <div className="space-y-6">
+                    {/* Glass Header */}
                     <div className="flex items-start justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className={cn("p-2 rounded-lg", category.bgColor)}>
-                          <category.icon className={cn("w-5 h-5", category.iconColor)} />
+                      <div className="flex items-center gap-4">
+                        <div className={cn("p-3 rounded-2xl backdrop-blur-sm", category.bgColor)}>
+                          <category.icon className={cn("w-6 h-6", category.iconColor)} />
                         </div>
                         <div className="flex-1">
-                          <h4 className="font-semibold text-gray-900 text-lg leading-tight">
+                          <h4 className="font-semibold text-white text-xl leading-tight">
                             {category.title}
                           </h4>
                         </div>
                       </div>
-                      <ChevronRight className="w-5 h-5 text-gray-400 mt-1" />
+                      <ChevronRight className="w-6 h-6 text-white/60 mt-1" />
                     </div>
 
                     {/* Description */}
-                    <p className="text-gray-600 text-sm leading-relaxed">
+                    <p className="text-white/80 text-base leading-relaxed">
                       {category.description}
                     </p>
 
-                    {/* Stats */}
-                    <div className="space-y-4">
+                    {/* Glass Stats */}
+                    <div className="space-y-6">
                       <div className="flex items-end justify-between">
                         <div className="text-left">
-                          <span className="text-sm font-medium text-gray-700 block mb-1">Total Stories</span>
-                          <span className="text-2xl font-bold text-gray-900">{category.totalStories}</span>
+                          <span className="text-sm font-medium text-white/70 block mb-2">Total Stories</span>
+                          <span className="text-3xl font-bold text-white">{category.totalStories}</span>
                         </div>
                         <div className="self-end">
                           <StatusIndicators counts={category.statusCounts} />
@@ -261,23 +261,23 @@ const KnowledgeBaseDashboard = () => {
           </div>
         </div>
 
-        {/* Action Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Glass Action Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Knowledge Gaps */}
-          <Card className="alert-warning border-amber-300">
-            <CardContent className="p-6">
+          <Card className="alert-warning">
+            <CardContent className="p-8">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0">
-                  <AlertTriangle className="w-6 h-6 text-amber-600" />
+                  <AlertTriangle className="w-7 h-7 text-amber-600" />
                 </div>
                 <div className="flex-1">
-                  <h4 className="font-semibold text-amber-900 text-lg mb-2">
+                  <h4 className="font-semibold text-amber-900 text-xl mb-3">
                     Knowledge Gaps Identified
                   </h4>
-                  <p className="text-amber-800 text-sm mb-3">
+                  <p className="text-amber-800 text-base mb-4">
                     We've identified areas where critical knowledge may be missing or incomplete.
                   </p>
-                  <Badge className="bg-amber-100 text-amber-800 border-amber-300 hover:bg-amber-200">
+                  <Badge className="bg-amber-100/80 text-amber-800 border-amber-300/50 hover:bg-amber-200/80 px-4 py-2 text-sm">
                     4 gaps found
                   </Badge>
                 </div>
@@ -286,20 +286,20 @@ const KnowledgeBaseDashboard = () => {
           </Card>
 
           {/* AI Suggestions */}
-          <Card className="alert-info border-blue-300">
-            <CardContent className="p-6">
+          <Card className="alert-info">
+            <CardContent className="p-8">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0">
-                  <Sparkles className="w-6 h-6 text-blue-600" />
+                  <Sparkles className="w-7 h-7 text-blue-600" />
                 </div>
                 <div className="flex-1">
-                  <h4 className="font-semibold text-blue-900 text-lg mb-2">
+                  <h4 className="font-semibold text-blue-900 text-xl mb-3">
                     AI Suggestions
                   </h4>
-                  <p className="text-blue-800 text-sm mb-3">
+                  <p className="text-blue-800 text-base mb-4">
                     Our AI has analyzed your content and found opportunities for improvement.
                   </p>
-                  <Badge className="bg-blue-100 text-blue-800 border-blue-300 hover:bg-blue-200">
+                  <Badge className="bg-blue-100/80 text-blue-800 border-blue-300/50 hover:bg-blue-200/80 px-4 py-2 text-sm">
                     5 suggestions
                   </Badge>
                 </div>
@@ -308,19 +308,19 @@ const KnowledgeBaseDashboard = () => {
           </Card>
         </div>
 
-        {/* Quick Actions */}
-        <div className="mt-8">
-          <div className="flex flex-wrap gap-3">
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-              <FileText className="w-4 h-4 mr-2" />
+        {/* Glass Quick Actions */}
+        <div className="mt-12">
+          <div className="flex flex-wrap gap-4">
+            <Button className="glass-card hover:bg-gradient-glass-hover text-white border-white/20 px-6 py-3 h-auto">
+              <FileText className="w-5 h-5 mr-3" />
               Add New Story
             </Button>
-            <Button variant="outline" className="border-gray-300 hover:bg-gray-50">
-              <BarChart3 className="w-4 h-4 mr-2" />
+            <Button className="glass-card hover:bg-gradient-glass-hover text-white border-white/20 px-6 py-3 h-auto">
+              <BarChart3 className="w-5 h-5 mr-3" />
               View Analytics
             </Button>
-            <Button variant="outline" className="border-gray-300 hover:bg-gray-50">
-              <Users className="w-4 h-4 mr-2" />
+            <Button className="glass-card hover:bg-gradient-glass-hover text-white border-white/20 px-6 py-3 h-auto">
+              <Users className="w-5 h-5 mr-3" />
               Manage Contributors
             </Button>
           </div>
