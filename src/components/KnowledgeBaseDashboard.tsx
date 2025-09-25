@@ -211,9 +211,9 @@ const KnowledgeBaseDashboard = () => {
 
         {/* Apple Glass Knowledge Categories */}
         <div className="mb-16">
-          <h3 className="text-xl font-semibold text-slate-800/70 mb-8 font-sf-pro">Knowledge Categories</h3>
+          <h3 className="text-xl font-semibold text-slate-800/70 mb-5 font-sf-pro">Knowledge Categories</h3>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {knowledgeCategories.map((category, index) => (
               <Card 
                 key={category.title}
@@ -311,15 +311,15 @@ const KnowledgeBaseDashboard = () => {
         {/* Apple Glass Quick Actions */}
         <div className="mt-12">
           <div className="flex flex-wrap gap-4">
-            <Button className="glass-card text-slate-700 px-8 py-4 h-auto font-sf-pro font-medium rounded-full hover:scale-105 transition-transform">
+            <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 h-auto font-sf-pro font-medium rounded-full hover:scale-105 transition-transform border-none">
               <FileText className="w-5 h-5 mr-3" />
               Add New Story
             </Button>
-            <Button className="glass-card text-slate-700 px-8 py-4 h-auto font-sf-pro font-medium rounded-full hover:scale-105 transition-transform">
+            <Button className="glass-card text-slate-700 px-8 py-4 h-auto font-sf-pro font-medium rounded-full hover:scale-105 transition-transform bg-white/80 hover:bg-white/90">
               <BarChart3 className="w-5 h-5 mr-3" />
               View Analytics
             </Button>
-            <Button className="glass-card text-slate-700 px-8 py-4 h-auto font-sf-pro font-medium rounded-full hover:scale-105 transition-transform">
+            <Button className="glass-card text-slate-700 px-8 py-4 h-auto font-sf-pro font-medium rounded-full hover:scale-105 transition-transform bg-white/80 hover:bg-white/90">
               <Users className="w-5 h-5 mr-3" />
               Manage Contributors
             </Button>
