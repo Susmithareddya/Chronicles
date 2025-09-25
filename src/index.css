@@ -228,10 +228,13 @@
   }
 
   .logo-c-outline {
-    width: 28px;
+    width: 44px;
     height: 44px;
-    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #06b6d4 100%);
-    border-radius: 0 22px 22px 0;
+    background: transparent;
+    border: 6px solid;
+    border-image: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #06b6d4 100%) 1;
+    border-right: none;
+    border-radius: 22px 0 0 22px;
     position: relative;
     box-shadow: 0 4px 16px rgba(59, 130, 246, 0.25);
   }
