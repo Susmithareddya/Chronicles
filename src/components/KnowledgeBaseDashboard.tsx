@@ -92,20 +92,20 @@ const KnowledgeBaseDashboard = () => {
   ];
 
   const StatusIndicators = ({ counts }: { counts: { complete: number, progress: number, incomplete: number } }) => (
-    <div className="flex items-center gap-2">
-      <div className="flex items-center gap-1">
-        <span className="text-green-700 font-semibold text-sm">{counts.complete}</span>
-        <div className="status-dot status-complete"></div>
-      </div>
-      <div className="flex items-center gap-1">
-        <span className="text-yellow-700 font-semibold text-sm">{counts.progress}</span>
-        <div className="status-dot status-progress"></div>
-      </div>
-      <div className="flex items-center gap-1">
-        <span className="text-red-700 font-semibold text-sm">{counts.incomplete}</span>
-        <div className="status-dot status-incomplete"></div>
-      </div>
-    </div>
+     <div className="flex items-center gap-3">
+       <div className="flex items-center gap-2">
+         <span className="text-emerald-600 font-medium text-sm font-sf-pro">{counts.complete}</span>
+         <div className="status-dot status-complete"></div>
+       </div>
+       <div className="flex items-center gap-2">
+         <span className="text-amber-600 font-medium text-sm font-sf-pro">{counts.progress}</span>
+         <div className="status-dot status-progress"></div>
+       </div>
+       <div className="flex items-center gap-2">
+         <span className="text-rose-600 font-medium text-sm font-sf-pro">{counts.incomplete}</span>
+         <div className="status-dot status-incomplete"></div>
+       </div>
+     </div>
   );
 
   return (
