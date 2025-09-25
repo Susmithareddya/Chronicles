@@ -112,7 +112,7 @@ const KnowledgeBaseDashboard = () => {
             {/* Logo */}
             <div className="flex items-center space-x-3">
               <img 
-                src="/src/assets/logo_chronicles.svg" 
+                src="/src/assets/logo_chronicles_1.svg" 
                 alt="CHRONICLES" 
                 className="h-12 w-auto"
               />
@@ -163,7 +163,7 @@ const KnowledgeBaseDashboard = () => {
             {knowledgeCategories.map((category, index) => (
               <Card 
                 key={category.title}
-                className="knowledge-card animate-slide-up cursor-pointer"
+                className="knowledge-card animate-slide-up cursor-pointer hover:shadow-lg transition-all duration-300 h-full"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <CardContent className="p-6">
@@ -190,13 +190,13 @@ const KnowledgeBaseDashboard = () => {
 
                     {/* Stats */}
                     <div className="space-y-4">
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm font-medium text-gray-700">Total Stories</span>
+                      <div className="text-center">
+                        <span className="text-sm font-medium text-gray-700 block mb-1">Total Stories</span>
                         <span className="text-2xl font-bold text-gray-900">{category.totalStories}</span>
                       </div>
 
                       {/* Status Section */}
-                      <div className="flex items-center justify-end">
+                      <div className="flex items-center justify-center">
                         <StatusIndicators counts={category.statusCounts} />
                       </div>
                     </div>
