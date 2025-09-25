@@ -31,13 +31,13 @@ const KnowledgeBaseDashboard = () => {
   const knowledgeCategories = [
     {
       title: "Onboarding Essentials",
-      description: "Critical knowledge for newcomers replacing Christopher - processes, workflows, and key relationships",
+      description: "Critical knowledge for newcomers replacing Christopher — processes, workflows, and key relationships",
       icon: Users,
       iconColor: "text-blue-600",
       bgColor: "bg-blue-50",
-      totalStories: 20,
-      completionRate: 85,
-      statusCounts: { complete: 17, progress: 2, incomplete: 1 }
+      totalStories: 5,
+      completionRate: 80,
+      statusCounts: { complete: 4, progress: 1, incomplete: 0 }
     },
     {
       title: "Project Histories", 
