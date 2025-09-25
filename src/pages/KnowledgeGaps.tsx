@@ -120,7 +120,7 @@ const KnowledgeGaps = () => {
                       {gap.title}
                     </h3>
                   </div>
-                  <Button className="bg-white/80 hover:bg-white/90 text-slate-700 border border-white/20 backdrop-blur-sm rounded-full px-6 py-2 h-auto font-medium transition-all duration-200 hover:shadow-md">
+                  <Button className="bg-blue-600 hover:bg-blue-700 text-white border-0 rounded-full px-6 py-2 h-auto font-medium transition-all duration-200 hover:shadow-md">
                     <Phone className="w-4 h-4 mr-2" />
                     Add story
                   </Button>
