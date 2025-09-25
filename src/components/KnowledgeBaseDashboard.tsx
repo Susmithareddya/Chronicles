@@ -226,19 +226,19 @@ const KnowledgeBaseDashboard = () => {
                      <div className="flex items-center justify-between">
                        <div className="flex items-center gap-4 flex-1 min-w-0">
                          <div className={cn("p-3 rounded-2xl backdrop-blur-sm flex-shrink-0", category.bgColor)}>
-                           <category.icon className={cn("w-6 h-6", category.iconColor)} />
+                           <category.icon className={cn("w-6 h-6 card-icon transition-colors duration-300", category.iconColor)} />
                          </div>
                          <div className="flex-1 min-w-0">
-                           <h4 className="font-semibold text-slate-800 text-lg leading-tight font-sf-pro truncate">
+                           <h4 className="font-semibold text-slate-800 text-lg leading-tight font-sf-pro truncate card-content transition-colors duration-300">
                              {category.title}
                            </h4>
                          </div>
                        </div>
-                       <ChevronRight className="w-6 h-6 text-slate-400 flex-shrink-0" />
+                       <ChevronRight className="w-6 h-6 text-slate-400 flex-shrink-0 chevron-icon transition-colors duration-300" />
                      </div>
 
                      {/* Description */}
-                     <p className="text-slate-600 text-base leading-relaxed font-sf-pro">
+                     <p className="text-slate-600 text-base leading-relaxed font-sf-pro card-description transition-colors duration-300">
                        {category.description}
                      </p>
                    </div>
@@ -247,8 +247,8 @@ const KnowledgeBaseDashboard = () => {
                    <div className="mt-auto pt-6">
                      <div className="flex items-end justify-between">
                        <div className="text-left">
-                         <span className="text-sm font-medium text-slate-500 block mb-2 font-sf-pro">Total Stories</span>
-                         <span className="text-3xl font-semibold text-slate-800 font-sf-pro">{category.totalStories}</span>
+                         <span className="text-sm font-medium text-slate-500 block mb-2 font-sf-pro card-stats transition-colors duration-300">Total Stories</span>
+                         <span className="text-3xl font-semibold text-slate-800 font-sf-pro card-content transition-colors duration-300">{category.totalStories}</span>
                        </div>
                        <div className="flex-shrink-0">
                          <StatusIndicators counts={category.statusCounts} />

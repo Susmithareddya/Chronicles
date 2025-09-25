@@ -153,9 +153,29 @@
   }
 
   .knowledge-card:hover {
-    transform: translateY(-2px) scale(1.01);
-    background: var(--glass-bg-hover);
-    box-shadow: var(--glass-shadow-hover);
+    transform: translateY(-3px) scale(1.02);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+
+  .knowledge-card:hover .card-content {
+    color: white;
+  }
+
+  .knowledge-card:hover .card-icon {
+    color: white !important;
+  }
+
+  .knowledge-card:hover .card-description {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .knowledge-card:hover .card-stats {
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  .knowledge-card:hover .chevron-icon {
+    color: rgba(255, 255, 255, 0.6);
   }
 
   /* Accessible focus states */
