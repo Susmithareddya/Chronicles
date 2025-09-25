@@ -116,9 +116,6 @@ const KnowledgeBaseDashboard = () => {
                 alt="CHRONICLES" 
                 className="h-12 w-auto"
               />
-              <div>
-                <p className="text-gray-600 text-sm">Corporate Knowledge Base</p>
-              </div>
             </div>
             
             {/* Search Bar */}
@@ -198,20 +195,9 @@ const KnowledgeBaseDashboard = () => {
                         <span className="text-2xl font-bold text-gray-900">{category.totalStories}</span>
                       </div>
 
-                      {/* Progress Section */}
-                      <div className="space-y-3">
-                        <div className="w-full bg-gray-200 rounded-full h-2.5">
-                          <div 
-                            className="progress-bar h-2.5 rounded-full" 
-                            style={{ width: `${category.completionRate}%` }}
-                          ></div>
-                        </div>
-                        <div className="flex items-center justify-between">
-                          <span className="text-sm font-medium text-gray-700">
-                            {category.completionRate}% Complete
-                          </span>
-                          <StatusIndicators counts={category.statusCounts} />
-                        </div>
+                      {/* Status Section */}
+                      <div className="flex items-center justify-end">
+                        <StatusIndicators counts={category.statusCounts} />
                       </div>
                     </div>
                   </div>
