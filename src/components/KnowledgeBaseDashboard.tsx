@@ -217,7 +217,7 @@ const KnowledgeBaseDashboard = () => {
             {knowledgeCategories.map((category, index) => (
               <Card 
                 key={category.title}
-                className="knowledge-card animate-slide-up cursor-pointer transition-all duration-300 h-full"
+                className="knowledge-card animate-slide-up cursor-pointer h-full"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                  <CardContent className="p-8 flex flex-col h-full">
