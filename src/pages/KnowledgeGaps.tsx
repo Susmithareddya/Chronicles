@@ -104,7 +104,7 @@ const KnowledgeGaps = () => {
               key={gap.id}
               className="bg-white backdrop-blur-xl border border-white/20 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 glass-card"
             >
-              <CardContent className="p-8 bg-white">
+              <CardContent className="p-8">
                 {/* Header */}
                 <div className="flex items-start justify-between mb-6">
                   <div className="flex-1">
