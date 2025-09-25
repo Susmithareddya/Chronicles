@@ -228,7 +228,7 @@ const KnowledgeBaseDashboard = () => {
                 className="block"
               >
                 <Card 
-                  className="knowledge-card animate-slide-up cursor-pointer h-full"
+                  className="knowledge-card animate-slide-up cursor-pointer h-full hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                  <CardContent className="p-8 flex flex-col h-full">
