@@ -214,7 +214,7 @@ const KnowledgeBaseDashboard = () => {
               </CardContent>
             </Card>
           )}
-          <p className="text-xl text-slate-600 max-w-3xl font-sf-pro font-light">
+          <p className="text-lg text-slate-600 max-w-3xl font-sf-pro font-light">
             Capturing and organizing critical knowledge from our Head of Product
           </p>
         </div>
