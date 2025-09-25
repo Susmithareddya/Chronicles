@@ -190,13 +190,13 @@ const KnowledgeBaseDashboard = () => {
 
                     {/* Stats */}
                     <div className="space-y-4">
-                      <div className="text-center">
+                      <div className="text-left">
                         <span className="text-sm font-medium text-gray-700 block mb-1">Total Stories</span>
                         <span className="text-2xl font-bold text-gray-900">{category.totalStories}</span>
                       </div>
 
                       {/* Status Section */}
-                      <div className="flex items-center justify-center">
+                      <div className="flex items-center justify-start">
                         <StatusIndicators counts={category.statusCounts} />
                       </div>
                     </div>
