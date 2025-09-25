@@ -56,22 +56,25 @@ const CategoryDetail = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen relative overflow-hidden" style={{ background: 'var(--gradient-bg)' }}>
+      {/* Liquid Glass Background Splash */}
+      <div className="absolute inset-0 liquid-glass-splash opacity-40"></div>
+      
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
           <Link 
             to="/"
-            className="inline-flex items-center gap-2 text-slate-600 hover:text-slate-800 transition-colors mb-6 font-sf-pro"
+            className="inline-flex items-center gap-2 text-slate-600 hover:text-slate-900 transition-all duration-200 mb-6 font-medium"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Dashboard
           </Link>
           
-          <h1 className="text-4xl font-bold text-slate-800 mb-3 font-sf-pro">
+          <h1 className="text-4xl font-bold text-slate-900 mb-3 tracking-tight">
             {decodedCategoryName}
           </h1>
-          <p className="text-lg text-slate-600 font-sf-pro font-light">
+          <p className="text-lg text-slate-600 font-light leading-relaxed">
             {getCategoryDescription(decodedCategoryName)}
           </p>
         </div>
@@ -81,20 +84,21 @@ const CategoryDetail = () => {
           {stories.map((story) => (
             <Card 
               key={story.id}
-              className="story-detail-card cursor-pointer transition-all duration-200 hover:shadow-lg border border-slate-200 hover:border-slate-300 bg-white"
+              className="glass-card cursor-pointer group relative overflow-hidden"
               onClick={() => setSelectedStory(story.id)}
             >
-              <CardContent className="p-6">
+              <CardContent className="p-6 relative z-10">
                 {/* Story Header */}
-                <div className="mb-4">
-                  <h3 className="font-semibold text-slate-800 text-lg mb-2 font-sf-pro leading-tight">
+                <div className="mb-5">
+                  <h3 className="font-semibold text-slate-900 text-xl mb-3 leading-tight tracking-tight group-hover:text-slate-800 transition-colors">
                     {story.title}
                   </h3>
                   
                   <Badge 
                     className={cn(
-                      "mb-3 text-sm px-3 py-1 rounded-full border font-sf-pro font-medium",
-                      getStatusColor(story.status)
+                      "glass-status-badge px-4 py-2 text-sm font-medium rounded-full border-0 backdrop-blur-md transition-all duration-200",
+                      story.status === 'complete' && "bg-emerald-100/80 text-emerald-800 shadow-emerald-200/50",
+                      story.status === 'progress' && "bg-amber-100/80 text-amber-800 shadow-amber-200/50"
                     )}
                   >
                     {getStatusLabel(story.status)}
@@ -102,13 +106,15 @@ const CategoryDetail = () => {
                 </div>
 
                 {/* Date */}
-                <div className="flex items-center gap-2 text-slate-500 mb-4">
-                  <Calendar className="w-4 h-4" />
-                  <span className="text-sm font-sf-pro">{story.date}</span>
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="p-2 rounded-lg bg-white/60 backdrop-blur-sm border border-white/20">
+                    <Calendar className="w-4 h-4 text-slate-600" />
+                  </div>
+                  <span className="text-sm text-slate-600 font-medium">{story.date}</span>
                 </div>
 
                 {/* Description */}
-                <p className="text-slate-600 text-sm leading-relaxed font-sf-pro mb-4 line-clamp-3">
+                <p className="text-slate-700 text-sm leading-relaxed mb-5 line-clamp-3 group-hover:text-slate-600 transition-colors">
                   {story.description}
                 </p>
 
@@ -117,7 +123,7 @@ const CategoryDetail = () => {
                   {story.tags.map((tag, index) => (
                     <Badge 
                       key={index}
-                      className="bg-blue-50 text-blue-700 text-xs px-2 py-1 rounded-md border border-blue-200 font-sf-pro font-normal hover:bg-blue-100 transition-colors"
+                      className="glass-tag px-3 py-1 text-xs font-medium rounded-full bg-blue-50/70 text-blue-800 border border-blue-100/50 backdrop-blur-sm hover:bg-blue-100/70 transition-all duration-200 shadow-sm"
                     >
                       {tag}
                     </Badge>
