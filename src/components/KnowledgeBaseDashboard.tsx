@@ -151,7 +151,7 @@ const KnowledgeBaseDashboard = () => {
         <div className="mb-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-3">Stories of Christopher Becker</h2>
           <p className="text-lg text-gray-700 max-w-3xl">
-            Capturing and organizing critical knowledge from our senior leadership team
+            Capturing and organizing critical knowledge from our Head of Product
           </p>
         </div>
 
