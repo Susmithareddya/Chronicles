@@ -165,7 +165,7 @@ const KnowledgeBaseDashboard = () => {
           
           {/* Christopher Becker Card */}
           {showChristopherCard && (
-            <Card className="mb-6 max-w-md bg-white shadow-lg border border-gray-200">
+            <Card className="absolute z-50 mt-2 max-w-md bg-white shadow-lg border border-gray-200 animate-fade-in">
               <CardContent className="p-6">
                   <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-4">
