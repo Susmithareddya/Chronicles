@@ -107,7 +107,7 @@ const CategoryDetail = () => {
 
                 {/* Date */}
                 <div className="flex items-center gap-3 mb-5">
-                  <div className="p-2 rounded-lg bg-white/60 backdrop-blur-sm border border-white/20">
+                  <div className="p-1">
                     <Calendar className="w-4 h-4 text-slate-600" />
                   </div>
                   <span className="text-sm text-slate-600 font-medium">{story.date}</span>
