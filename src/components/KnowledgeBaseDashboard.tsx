@@ -120,6 +120,10 @@ const KnowledgeBaseDashboard = () => {
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             {/* Logo */}
             <div className="flex items-center space-x-3">
+              <div className="logo-icon">
+                <div className="logo-c">C</div>
+                <div className="logo-dot"></div>
+              </div>
               <div className="logo-container">
                 <div className="logo-main font-sf-pro font-bold text-slate-800">
                   Chronicles
