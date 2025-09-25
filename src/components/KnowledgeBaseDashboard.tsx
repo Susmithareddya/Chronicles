@@ -164,7 +164,7 @@ const KnowledgeBaseDashboard = () => {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Apple Glass Page Header */}
         <div className="mb-12">
-          <h2 className="text-4xl font-semibold text-slate-800 mb-4 font-sf-pro">
+          <h2 className="text-4xl font-semibold text-slate-800 mb-2 font-sf-pro">
             Stories of <span 
               className="text-blue-600 cursor-pointer hover:text-blue-700 transition-colors"
               onClick={() => setShowChristopherCard(!showChristopherCard)}
