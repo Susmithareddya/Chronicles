@@ -126,7 +126,7 @@ const KnowledgeBaseDashboard = () => {
             {/* Glass Search Bar */}
             <div className="flex-1 max-w-lg">
               <div className="relative">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-600 w-5 h-5" />
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
                 <Input 
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
