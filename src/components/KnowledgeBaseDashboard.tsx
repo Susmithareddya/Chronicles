@@ -142,7 +142,7 @@ const KnowledgeBaseDashboard = () => {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search stories, topics, or insights..."
-                  className="glass-input pl-12 h-12 text-slate-800 placeholder:text-slate-500 text-base font-sf-pro"
+                  className="glass-input pl-12 h-11 text-slate-800 placeholder:text-slate-500 text-base font-sf-pro font-normal"
                 />
               </div>
             </div>
