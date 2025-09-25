@@ -89,17 +89,24 @@ export default {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      fontFamily: {
+        'heading': ['Playfair Display', 'serif'],
+        'body': ['Inter', 'sans-serif'],
+      },
       backgroundImage: {
         'gradient-primary': 'var(--gradient-primary)',
         'gradient-accent': 'var(--gradient-accent)',
         'gradient-bg': 'var(--gradient-bg)',
         'gradient-card': 'var(--gradient-card)',
+        'gradient-hero': 'var(--gradient-hero)',
       },
       boxShadow: {
         'primary': 'var(--shadow-primary)',
         'accent': 'var(--shadow-accent)',
-        'card': 'var(--shadow-card)',
-        'hover': 'var(--shadow-hover)',
+        'sm': 'var(--shadow-sm)',
+        'md': 'var(--shadow-md)',
+        'lg': 'var(--shadow-lg)',
+        'xl': 'var(--shadow-xl)',
       },
       transitionTimingFunction: {
         'smooth': 'var(--transition-smooth)',
