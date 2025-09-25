@@ -220,41 +220,41 @@ const KnowledgeBaseDashboard = () => {
                 className="knowledge-card animate-slide-up cursor-pointer transition-all duration-300 h-full"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <CardContent className="p-8">
-                  <div className="space-y-6">
-                    {/* Glass Header */}
-                    <div className="flex items-start justify-between">
-                      <div className="flex items-center gap-4">
-                        <div className={cn("p-3 rounded-2xl backdrop-blur-sm", category.bgColor)}>
-                          <category.icon className={cn("w-6 h-6", category.iconColor)} />
-                        </div>
-                        <div className="flex-1">
-                          <h4 className="font-semibold text-slate-800 text-lg leading-tight font-sf-pro truncate">
-                            {category.title}
-                          </h4>
-                        </div>
-                      </div>
-                      <ChevronRight className="w-6 h-6 text-slate-400 mt-1" />
-                    </div>
+                 <CardContent className="p-8 flex flex-col h-full">
+                   <div className="flex-1 space-y-6">
+                     {/* Glass Header */}
+                     <div className="flex items-center justify-between">
+                       <div className="flex items-center gap-4 flex-1 min-w-0">
+                         <div className={cn("p-3 rounded-2xl backdrop-blur-sm flex-shrink-0", category.bgColor)}>
+                           <category.icon className={cn("w-6 h-6", category.iconColor)} />
+                         </div>
+                         <div className="flex-1 min-w-0">
+                           <h4 className="font-semibold text-slate-800 text-lg leading-tight font-sf-pro truncate">
+                             {category.title}
+                           </h4>
+                         </div>
+                       </div>
+                       <ChevronRight className="w-6 h-6 text-slate-400 flex-shrink-0" />
+                     </div>
 
-                    {/* Description */}
-                    <p className="text-slate-600 text-base leading-relaxed font-sf-pro">
-                      {category.description}
-                    </p>
+                     {/* Description */}
+                     <p className="text-slate-600 text-base leading-relaxed font-sf-pro">
+                       {category.description}
+                     </p>
+                   </div>
 
-                    {/* Apple Glass Stats */}
-                    <div className="space-y-6">
-                      <div className="flex items-end justify-between">
-                        <div className="text-left">
-                          <span className="text-sm font-medium text-slate-500 block mb-2 font-sf-pro">Total Stories</span>
-                          <span className="text-3xl font-semibold text-slate-800 font-sf-pro">{category.totalStories}</span>
-                        </div>
-                        <div className="self-end">
-                          <StatusIndicators counts={category.statusCounts} />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                   {/* Apple Glass Stats - Aligned to bottom */}
+                   <div className="mt-auto pt-6">
+                     <div className="flex items-end justify-between">
+                       <div className="text-left">
+                         <span className="text-sm font-medium text-slate-500 block mb-2 font-sf-pro">Total Stories</span>
+                         <span className="text-3xl font-semibold text-slate-800 font-sf-pro">{category.totalStories}</span>
+                       </div>
+                       <div className="flex-shrink-0">
+                         <StatusIndicators counts={category.statusCounts} />
+                       </div>
+                     </div>
+                   </div>
                 </CardContent>
               </Card>
             ))}
