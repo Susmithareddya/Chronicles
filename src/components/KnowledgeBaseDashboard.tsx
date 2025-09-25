@@ -235,9 +235,9 @@ const KnowledgeBaseDashboard = () => {
                      {/* Glass Header */}
                      <div className="flex items-center justify-between">
                        <div className="flex items-center gap-4 flex-1 min-w-0">
-                         <div className={cn("p-3 rounded-2xl backdrop-blur-sm flex-shrink-0", category.bgColor)}>
-                           <category.icon className={cn("w-6 h-6 card-icon transition-colors duration-300", category.iconColor)} />
-                         </div>
+                          <div className="liquid-glass-icon-container flex-shrink-0">
+                            <category.icon className={cn("w-6 h-6 card-icon transition-colors duration-300", category.iconColor)} />
+                          </div>
                          <div className="flex-1 min-w-0">
                            <h4 className="font-semibold text-slate-800 text-lg leading-tight font-sf-pro truncate card-content transition-colors duration-300">
                              {category.title}
