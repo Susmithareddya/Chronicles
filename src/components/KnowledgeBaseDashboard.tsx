@@ -3,6 +3,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { StoryCard, Story } from "@/components/StoryCard";
+import { getStoriesForCategory, calculateStatusCounts } from "@/data/storiesData";
 import { 
   Search, 
   Star,
@@ -14,6 +16,7 @@ import {
   TriangleAlert,
   Sparkles,
   ChevronRight,
+  ChevronDown,
   TrendingUp,
   FileText,
   Users,
@@ -28,6 +31,17 @@ import { cn } from "@/lib/utils";
 const KnowledgeBaseDashboard = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [showChristopherCard, setShowChristopherCard] = useState(false);
+  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set());
+
+  const toggleCategory = (categoryTitle: string) => {
+    const newExpanded = new Set(expandedCategories);
+    if (newExpanded.has(categoryTitle)) {
+      newExpanded.delete(categoryTitle);
+    } else {
+      newExpanded.add(categoryTitle);
+    }
+    setExpandedCategories(newExpanded);
+  };
 
   const knowledgeCategories = [
     {
@@ -36,9 +50,6 @@ const KnowledgeBaseDashboard = () => {
       icon: GraduationCap,
       iconColor: "text-blue-600",
       bgColor: "bg-blue-50",
-      totalStories: 5,
-      completionRate: 80,
-      statusCounts: { complete: 4, progress: 1, incomplete: 0 }
     },
     {
       title: "Project Histories", 
@@ -46,9 +57,6 @@ const KnowledgeBaseDashboard = () => {
       icon: Package,
       iconColor: "text-red-600",
       bgColor: "bg-red-50",
-      totalStories: 23,
-      completionRate: 78,
-      statusCounts: { complete: 18, progress: 3, incomplete: 2 }
     },
     {
       title: "Crisis Management",
@@ -56,9 +64,6 @@ const KnowledgeBaseDashboard = () => {
       icon: ShieldCheck,
       iconColor: "text-blue-600",
       bgColor: "bg-blue-50",
-      totalStories: 8,
-      completionRate: 75,
-      statusCounts: { complete: 6, progress: 1, incomplete: 1 }
     },
     {
       title: "Strategic Partnerships",
@@ -66,9 +71,6 @@ const KnowledgeBaseDashboard = () => {
       icon: Handshake, 
       iconColor: "text-amber-600",
       bgColor: "bg-amber-50",
-      totalStories: 18,
-      completionRate: 78,
-      statusCounts: { complete: 14, progress: 2, incomplete: 2 }
     },
     {
       title: "Strategy Lessons",
@@ -76,9 +78,6 @@ const KnowledgeBaseDashboard = () => {
       icon: Crosshair,
       iconColor: "text-pink-600", 
       bgColor: "bg-pink-50",
-      totalStories: 12,
-      completionRate: 75,
-      statusCounts: { complete: 9, progress: 2, incomplete: 1 }
     },
     {
       title: "Innovation & Technology",
@@ -86,11 +85,18 @@ const KnowledgeBaseDashboard = () => {
       icon: Zap,
       iconColor: "text-yellow-600",
       bgColor: "bg-yellow-50",
-      totalStories: 10, 
-      completionRate: 70,
-      statusCounts: { complete: 7, progress: 1, incomplete: 2 }
     }
-  ];
+  ].map(category => {
+    const stories = getStoriesForCategory(category.title);
+    const statusCounts = calculateStatusCounts(stories);
+    return {
+      ...category,
+      totalStories: stories.length,
+      completionRate: stories.length > 0 ? Math.round((statusCounts.complete / stories.length) * 100) : 0,
+      statusCounts,
+      stories
+    };
+  });
 
   const StatusIndicators = ({ counts }: { counts: { complete: number, progress: number, incomplete: number } }) => (
      <div className="flex items-center gap-3">
@@ -151,7 +157,7 @@ const KnowledgeBaseDashboard = () => {
             <div className="hidden lg:flex items-center gap-4 text-sm">
               <div className="flex items-center gap-3 glass-card px-6 py-3">
                 <FileText className="w-4 h-4 text-slate-600" />
-                <span className="font-medium text-slate-700 font-sf-pro">86 Stories</span>
+                <span className="font-medium text-slate-700 font-sf-pro">{knowledgeCategories.reduce((total, cat) => total + cat.totalStories, 0)} Stories</span>
               </div>
               <div className="flex items-center gap-3 glass-card px-6 py-3">
                 <Users className="w-4 h-4 text-slate-600" />
@@ -226,48 +232,67 @@ const KnowledgeBaseDashboard = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {knowledgeCategories.map((category, index) => (
-              <Card 
-                key={category.title}
-                className="knowledge-card animate-slide-up cursor-pointer h-full"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
+              <div key={category.title}>
+                <Card 
+                  className="knowledge-card animate-slide-up cursor-pointer h-auto"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                  onClick={() => toggleCategory(category.title)}
+                >
                  <CardContent className="p-8 flex flex-col h-full">
-                   <div className="flex-1 space-y-6">
-                     {/* Glass Header */}
-                     <div className="flex items-center justify-between">
-                       <div className="flex items-center gap-4 flex-1 min-w-0">
-                         <div className={cn("p-3 rounded-2xl backdrop-blur-sm flex-shrink-0", category.bgColor)}>
-                           <category.icon className={cn("w-6 h-6 card-icon transition-colors duration-300", category.iconColor)} />
-                         </div>
-                         <div className="flex-1 min-w-0">
-                           <h4 className="font-semibold text-slate-800 text-lg leading-tight font-sf-pro truncate card-content transition-colors duration-300">
-                             {category.title}
-                           </h4>
-                         </div>
-                       </div>
-                       <ChevronRight className="w-6 h-6 text-slate-400 flex-shrink-0 chevron-icon transition-colors duration-300" />
-                     </div>
+                    <div className="flex-1 space-y-6">
+                      {/* Glass Header */}
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-4 flex-1 min-w-0">
+                          <div className={cn("p-3 rounded-2xl backdrop-blur-sm flex-shrink-0", category.bgColor)}>
+                            <category.icon className={cn("w-6 h-6 card-icon transition-colors duration-300", category.iconColor)} />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h4 className="font-semibold text-slate-800 text-lg leading-tight font-sf-pro truncate card-content transition-colors duration-300">
+                              {category.title}
+                            </h4>
+                          </div>
+                        </div>
+                        {expandedCategories.has(category.title) ? (
+                          <ChevronDown className="w-6 h-6 text-slate-400 flex-shrink-0 chevron-icon transition-colors duration-300" />
+                        ) : (
+                          <ChevronRight className="w-6 h-6 text-slate-400 flex-shrink-0 chevron-icon transition-colors duration-300" />
+                        )}
+                      </div>
 
-                     {/* Description */}
-                     <p className="text-slate-600 text-base leading-relaxed font-sf-pro card-description transition-colors duration-300">
-                       {category.description}
-                     </p>
-                   </div>
+                      {/* Description */}
+                      <p className="text-slate-600 text-base leading-relaxed font-sf-pro card-description transition-colors duration-300">
+                        {category.description}
+                      </p>
+                    </div>
 
-                   {/* Apple Glass Stats - Aligned to bottom */}
-                   <div className="mt-auto pt-6">
-                     <div className="flex items-end justify-between">
-                       <div className="text-left">
-                         <span className="text-sm font-medium text-slate-500 block mb-2 font-sf-pro card-stats transition-colors duration-300">Total Stories</span>
-                         <span className="text-3xl font-semibold text-slate-800 font-sf-pro card-content transition-colors duration-300">{category.totalStories}</span>
-                       </div>
-                       <div className="flex-shrink-0">
-                         <StatusIndicators counts={category.statusCounts} />
-                       </div>
-                     </div>
-                   </div>
-                </CardContent>
-              </Card>
+                    {/* Apple Glass Stats - Aligned to bottom */}
+                    <div className="mt-auto pt-6">
+                      <div className="flex items-end justify-between">
+                        <div className="text-left">
+                          <span className="text-sm font-medium text-slate-500 block mb-2 font-sf-pro card-stats transition-colors duration-300">Total Stories</span>
+                          <span className="text-3xl font-semibold text-slate-800 font-sf-pro card-content transition-colors duration-300">{category.totalStories}</span>
+                        </div>
+                        <div className="flex-shrink-0">
+                          <StatusIndicators counts={category.statusCounts} />
+                        </div>
+                      </div>
+                    </div>
+                 </CardContent>
+               </Card>
+
+               {/* Stories List */}
+               {expandedCategories.has(category.title) && (
+                 <div className="mt-4 ml-4 space-y-3 animate-fade-in">
+                   {category.stories.map((story) => (
+                     <StoryCard 
+                       key={story.id} 
+                       story={story}
+                       onClick={() => console.log('Story clicked:', story.title)}
+                     />
+                   ))}
+                 </div>
+               )}
+              </div>
             ))}
           </div>
         </div>
