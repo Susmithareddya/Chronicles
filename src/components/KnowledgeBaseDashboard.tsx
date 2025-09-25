@@ -92,7 +92,7 @@ const KnowledgeBaseDashboard = () => {
   ];
 
   const StatusIndicators = ({ counts }: { counts: { complete: number, progress: number, incomplete: number } }) => (
-    <div className="flex items-baseline gap-2 mt-2">
+    <div className="flex items-center gap-2">
       <div className="flex items-center gap-1">
         <span className="text-green-700 font-semibold text-sm">{counts.complete}</span>
         <div className="status-dot status-complete"></div>
@@ -244,12 +244,14 @@ const KnowledgeBaseDashboard = () => {
 
                     {/* Stats */}
                     <div className="space-y-4">
-                      <div className="flex items-center justify-between">
+                      <div className="flex items-end justify-between">
                         <div className="text-left">
                           <span className="text-sm font-medium text-gray-700 block mb-1">Total Stories</span>
                           <span className="text-2xl font-bold text-gray-900">{category.totalStories}</span>
                         </div>
-                        <StatusIndicators counts={category.statusCounts} />
+                        <div className="self-end">
+                          <StatusIndicators counts={category.statusCounts} />
+                        </div>
                       </div>
                     </div>
                   </div>
