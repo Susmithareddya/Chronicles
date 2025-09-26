@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Calendar, Edit, Paperclip, Phone } from "lucide-react";
 import { getStoriesForCategory } from "@/data/storiesData";
+import { detailedStoryContent } from "@/data/storyContent";
 import { cn } from "@/lib/utils";
 
 const StoryDetail = () => {
@@ -102,9 +103,11 @@ const StoryDetail = () => {
             {/* Description */}
             <div className="mb-8">
               <h2 className="text-xl font-semibold text-slate-900 mb-4">Story Details</h2>
-              <p className="text-slate-700 text-base leading-relaxed">
-                {story.description}
-              </p>
+              <div className="prose prose-lg max-w-none text-slate-700 leading-relaxed">
+                <div dangerouslySetInnerHTML={{ 
+                  __html: detailedStoryContent[story.id]?.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br />') || story.description 
+                }} />
+              </div>
             </div>
 
             {/* Tags */}
