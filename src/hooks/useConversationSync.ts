@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import { ConversationIntegrationService, type SyncResult } from '../services/conversationIntegrationService';
 import type { StoredConversation } from '../services/conversationStorageService';
+import { storyTileService } from '../data/storiesData';
 
 export interface UseSyncState {
   isLoading: boolean;
@@ -44,6 +45,23 @@ export function useConversationSync() {
           status: result.success ? 'Completed' : 'Completed with errors',
         },
       }));
+
+      // Trigger conversation completed popup if sync was successful
+      if (result.success && result.stored > 0) {
+        console.log('🔍 Conversations synced successfully - triggering completion popup...');
+
+        // Dispatch custom event for conversation completion
+        if (typeof window !== 'undefined') {
+          window.dispatchEvent(new CustomEvent('chronicles:conversation:completed', {
+            detail: {
+              conversationsStored: result.stored,
+              timestamp: new Date().toISOString()
+            }
+          }));
+        }
+
+        console.log(`✅ ${result.stored} conversations synced - popup triggered!`);
+      }
 
       return result;
     } catch (error) {
