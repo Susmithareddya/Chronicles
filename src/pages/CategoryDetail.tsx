@@ -49,7 +49,7 @@ const CategoryDetail = () => {
       case 'progress':
         return 'In Progress';
       case 'incomplete':
-        return 'Draft';
+        return 'In Progress';
       default:
         return 'Unknown';
     }
@@ -96,7 +96,7 @@ const CategoryDetail = () => {
                   
                   <Badge 
                     className={cn(
-                      "glass-status-badge px-2 py-1 text-xs font-medium rounded-full border-0 backdrop-blur-md transition-all duration-200 hover:bg-emerald-100/90 hover:text-emerald-800",
+                      "glass-status-badge px-2 py-1 text-xs font-medium rounded-full border-0 backdrop-blur-md pointer-events-none",
                       story.status === 'complete' && "bg-emerald-100/80 text-emerald-700 shadow-emerald-200/50",
                       story.status === 'progress' && "bg-amber-100/80 text-amber-700 shadow-amber-200/50"
                     )}
