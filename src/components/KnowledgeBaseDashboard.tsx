@@ -103,17 +103,21 @@ const KnowledgeBaseDashboard = () => {
       progress: number;
       incomplete: number;
     };
-  }) => <div className="flex items-center gap-3">
-       <div className="flex items-center gap-2">
-         <span className="text-emerald-600 font-medium text-sm font-sf-pro">{counts.complete}</span>
-         <div className="status-dot status-complete"></div>
-       </div>
-       <div className="flex items-center gap-2">
-         <span className="text-amber-600 font-medium text-sm font-sf-pro">{counts.progress}</span>
-         <div className="status-dot status-progress"></div>
-       </div>
-     </div>;
-  return <div className="min-h-screen relative overflow-hidden">
+  }) => (
+    <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2">
+        <span className="text-emerald-600 font-medium text-sm font-sf-pro">{counts.complete}</span>
+        <div className="status-dot status-complete"></div>
+      </div>
+      <div className="flex items-center gap-2">
+        <span className="text-amber-600 font-medium text-sm font-sf-pro">{counts.progress}</span>
+        <div className="status-dot status-progress"></div>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="min-h-screen relative overflow-hidden">
       {/* Liquid Glass Background Gradient Splash */}
       <div className="fixed top-0 right-0 w-96 h-96 opacity-30 pointer-events-none">
         <div className="liquid-glass-splash"></div>
