@@ -6,48 +6,85 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { StoryCard, Story } from "@/components/StoryCard";
 import { getStoriesForCategory, calculateStatusCounts } from "@/data/storiesData";
-import { Search, Star, Package, ShieldCheck, Handshake, Crosshair, Zap, TriangleAlert, Sparkles, ChevronRight, ChevronDown, TrendingUp, FileText, Users, Mail, Phone, MapPin, X, GraduationCap } from "lucide-react";
+
+import { ConversationCompletedPopup } from "@/components/ConversationCompletedPopup";
+import { useConversationCompleted } from "@/hooks/useConversationCompleted";
+import {
+  Search,
+  Star,
+  Package,
+  ShieldCheck,
+  Handshake,
+  Crosshair,
+  Zap,
+  TriangleAlert,
+  Sparkles,
+  ChevronRight,
+  ChevronDown,
+  TrendingUp,
+  FileText,
+  Users,
+  Mail,
+  Phone,
+  MapPin,
+  X,
+  GraduationCap,
+  TestTube
+} from "lucide-react";
+
 import { cn } from "@/lib/utils";
 const KnowledgeBaseDashboard = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [showChristopherCard, setShowChristopherCard] = useState(false);
-  const knowledgeCategories = [{
-    title: "Onboarding Essentials",
-    description: "Critical knowledge for newcomers replacing Christopher — processes, workflows, and key relationships",
-    icon: GraduationCap,
-    iconColor: "text-blue-600",
-    bgColor: "bg-blue-50"
-  }, {
-    title: "Project Histories",
-    description: "Major initiatives, launches, and transformation programs",
-    icon: Package,
-    iconColor: "text-red-600",
-    bgColor: "bg-red-50"
-  }, {
-    title: "Crisis Management",
-    description: "Handling challenges, market downturns, and operational disruptions",
-    icon: ShieldCheck,
-    iconColor: "text-blue-600",
-    bgColor: "bg-blue-50"
-  }, {
-    title: "Strategic Partnerships",
-    description: "Key partnerships, negotiations, and supply chain strategies",
-    icon: Handshake,
-    iconColor: "text-amber-600",
-    bgColor: "bg-amber-50"
-  }, {
-    title: "Strategy Lessons",
-    description: "Market analysis, competitive positioning, and long-term planning",
-    icon: Crosshair,
-    iconColor: "text-pink-600",
-    bgColor: "bg-pink-50"
-  }, {
-    title: "Innovation & Technology",
-    description: "R&D decisions, technology adoption, and future trends",
-    icon: Zap,
-    iconColor: "text-yellow-600",
-    bgColor: "bg-yellow-50"
-  }].map(category => {
+  
+  // Conversation completed hook
+  const conversationCompleted = useConversationCompleted();
+
+  const knowledgeCategories = [
+    {
+      title: "Onboarding Essentials",
+      description: "Critical knowledge for newcomers replacing Christopher — processes, workflows, and key relationships",
+      icon: GraduationCap,
+      iconColor: "text-blue-600",
+      bgColor: "bg-blue-50",
+    },
+    {
+      title: "Project Histories", 
+      description: "Major initiatives, launches, and transformation programs",
+      icon: Package,
+      iconColor: "text-red-600",
+      bgColor: "bg-red-50",
+    },
+    {
+      title: "Crisis Management",
+      description: "Handling challenges, market downturns, and operational disruptions", 
+      icon: ShieldCheck,
+      iconColor: "text-blue-600",
+      bgColor: "bg-blue-50",
+    },
+    {
+      title: "Strategic Partnerships",
+      description: "Key partnerships, negotiations, and supply chain strategies",
+      icon: Handshake, 
+      iconColor: "text-amber-600",
+      bgColor: "bg-amber-50",
+    },
+    {
+      title: "Strategy Lessons",
+      description: "Market analysis, competitive positioning, and long-term planning",
+      icon: Crosshair,
+      iconColor: "text-pink-600", 
+      bgColor: "bg-pink-50",
+    },
+    {
+      title: "Innovation & Technology",
+      description: "R&D decisions, technology adoption, and future trends",
+      icon: Zap,
+      iconColor: "text-yellow-600",
+      bgColor: "bg-yellow-50",
+    }
+  ].map(category => {
+
     const stories = getStoriesForCategory(category.title);
     const statusCounts = calculateStatusCounts(stories);
     return {
@@ -283,9 +320,24 @@ const KnowledgeBaseDashboard = () => {
               <Users className="w-5 h-5 mr-3" />
               Manage Contributors
             </Button>
+            <Button
+              onClick={conversationCompleted.triggerConversationCompleted}
+              className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 h-auto font-sf-pro font-medium rounded-full hover:scale-105 transition-transform border-none"
+            >
+              <TestTube className="w-5 h-5 mr-3" />
+              Test Call End Popup
+            </Button>
           </div>
+
         </div>
       </main>
-    </div>;
+
+      {/* Conversation Completed Popup */}
+      <ConversationCompletedPopup
+        isOpen={conversationCompleted.showPopup}
+        onClose={conversationCompleted.closePopup}
+      />
+    </div>
+  );
 };
 export default KnowledgeBaseDashboard;

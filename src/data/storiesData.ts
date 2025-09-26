@@ -1,4 +1,8 @@
 import { Story } from "@/components/StoryCard";
+import { StoryTileService } from "@/services/storyTileService";
+
+// Create a singleton instance of the story tile service
+const storyTileService = new StoryTileService();
 
 export const storiesData: { [key: string]: Story[] } = {
   "Onboarding Essentials": [
@@ -420,9 +424,10 @@ export const storiesData: { [key: string]: Story[] } = {
   ]
 };
 
-// Helper function to get stories for a category
+// Helper function to get stories for a category (including dynamic ones)
 export const getStoriesForCategory = (categoryTitle: string): Story[] => {
-  return storiesData[categoryTitle] || [];
+  const staticStories = storiesData[categoryTitle] || [];
+  return storyTileService.getStoriesForCategory(categoryTitle, staticStories);
 };
 
 // Helper function to calculate status counts
@@ -435,3 +440,6 @@ export const calculateStatusCounts = (stories: Story[]) => {
     { complete: 0, progress: 0, incomplete: 0 }
   );
 };
+
+// Export the story tile service for use in components
+export { storyTileService };

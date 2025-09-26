@@ -9,6 +9,7 @@ import StoryDetail from "./pages/StoryDetail";
 import KnowledgeGaps from "./pages/KnowledgeGaps";
 import AISuggestions from "./pages/AISuggestions";
 import NotFound from "./pages/NotFound";
+import ConversationSync from "./pages/ConversationSync";
 
 const queryClient = new QueryClient();
 
