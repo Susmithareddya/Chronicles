@@ -56,11 +56,11 @@ const CategoryDetail = () => {
   };
 
   return (
-    <div className="min-h-screen relative overflow-hidden" style={{ background: 'var(--gradient-bg)' }}>
+    <div className="min-h-screen relative overflow-hidden animate-fade-in" style={{ background: 'var(--gradient-bg)' }}>
       {/* Liquid Glass Background Splash */}
       <div className="absolute inset-0 liquid-glass-splash opacity-40"></div>
       
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-slide-up">
         {/* Header */}
         <div className="mb-8">
           <Link 

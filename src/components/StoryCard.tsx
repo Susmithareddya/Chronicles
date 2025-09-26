@@ -58,7 +58,7 @@ export const StoryCard = ({ story, categoryName, onClick }: StoryCardProps) => {
 
   return (
     <Card 
-      className="story-card cursor-pointer transition-all duration-200 hover:shadow-md border border-slate-200 hover:border-slate-300"
+      className="story-card cursor-pointer transition-all duration-200 hover:shadow-md border border-slate-200 hover:border-slate-300 hover-scale"
       onClick={handleClick}
     >
       <CardContent className="p-4">

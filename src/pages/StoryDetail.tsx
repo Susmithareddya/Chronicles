@@ -47,11 +47,11 @@ const StoryDetail = () => {
   };
 
   return (
-    <div className="min-h-screen relative overflow-hidden" style={{ background: 'var(--gradient-bg)' }}>
+    <div className="min-h-screen relative overflow-hidden animate-fade-in" style={{ background: 'var(--gradient-bg)' }}>
       {/* Liquid Glass Background Splash */}
       <div className="absolute inset-0 liquid-glass-splash opacity-40"></div>
       
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-slide-up">
         {/* Header */}
         <div className="mb-8">
           <Link 
@@ -64,7 +64,7 @@ const StoryDetail = () => {
         </div>
 
         {/* Story Card */}
-        <Card className="bg-white border border-slate-200 rounded-3xl shadow-lg overflow-hidden">
+        <Card className="bg-white border border-slate-200 rounded-3xl shadow-lg overflow-hidden animate-scale-in">
           <CardContent className="p-8">
             {/* Story Header */}
             <div className="flex items-start justify-between mb-6">
