@@ -39,7 +39,7 @@ export const StoryCard = ({ story, onClick }: StoryCardProps) => {
       case 'progress':
         return 'In Progress';
       case 'incomplete':
-        return 'Draft';
+        return 'In Progress';
       default:
         return 'Unknown';
     }
