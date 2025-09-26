@@ -175,7 +175,7 @@ const KnowledgeBaseDashboard = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {knowledgeCategories.map((category, index) => <Link key={category.title} to={`/category/${encodeURIComponent(category.title)}`} className="block">
-                <Card className="knowledge-card animate-slide-up cursor-pointer h-full hover:shadow-2xl hover:-translate-y-2 hover:scale-105 transition-all duration-300" style={{
+                <Card className="knowledge-card animate-slide-up cursor-pointer h-full hover:shadow-2xl hover:-translate-y-1 hover:scale-105 transition-all duration-300" style={{
               animationDelay: `${index * 100}ms`
             }}>
                  <CardContent className="p-8 flex flex-col h-full">
