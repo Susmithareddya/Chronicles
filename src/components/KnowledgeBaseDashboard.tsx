@@ -129,7 +129,7 @@ const KnowledgeBaseDashboard = () => {
             {/* Logo */}
             <div className="flex items-center space-x-3">
               <div className="logo-icon">
-                <img src="/src/assets/logo-sign-2.svg" alt="Chronicles Logo" className="w-12 h-12 object-contain" />
+                <img src="/logo-sign-2.svg" alt="Chronicles Logo" className="w-12 h-12 object-contain" />
               </div>
               <div className="logo-container">
                 <div className="logo-main font-sf-pro font-bold text-slate-800">
@@ -178,7 +178,7 @@ const KnowledgeBaseDashboard = () => {
               <CardContent className="p-8 shadow-2xl shadow-black/10">
                   <div className="flex items-start justify-between mb-6">
                   <div className="flex items-center gap-4">
-                    <img src="/src/assets/christopher-becker-avatar.jpg" alt="Christopher Becker" className="w-16 h-16 rounded-full object-cover border-2 border-white/30" />
+                    <img src="/christopher-becker-avatar.jpg" alt="Christopher Becker" className="w-16 h-16 rounded-full object-cover border-2 border-white/30" />
                     <div>
                       <h3 className="text-xl font-semibold text-slate-800 font-sf-pro">Christopher Becker</h3>
                       <p className="text-blue-600 font-medium font-sf-pro">Head of Product</p>
