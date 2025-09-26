@@ -62,7 +62,7 @@ export const StoryCard = ({ story, onClick }: StoryCardProps) => {
           </div>
           <Badge 
             className={cn(
-              "ml-3 text-xs px-2 py-1 rounded-full border font-sf-pro font-medium flex-shrink-0",
+              "ml-3 text-xs px-2 py-1 rounded-full border font-sf-pro font-medium flex-shrink-0 pointer-events-none",
               getStatusColor(story.status)
             )}
           >
