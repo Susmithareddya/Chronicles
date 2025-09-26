@@ -1,21 +1,23 @@
 const ELEVENLABS_API_KEY = import.meta.env.VITE_ELEVEN_LABS_API_KEY;
 const PROXY_BASE_URL = import.meta.env.VITE_PROXY_URL || 'http://localhost:3001';
-const USE_PROXY = import.meta.env.VITE_USE_PROXY !== 'false'; // Default to true
+const USE_PROXY = import.meta.env.VITE_USE_PROXY === 'true'; // Default to false (direct API)
 
-// Determine API base URL - use Vercel API routes in production, proxy in development
+// Determine API base URL - use Vercel API routes for both dev and production
 const getApiBaseUrl = () => {
   // If custom API base URL is set, use it
   if (import.meta.env.VITE_API_BASE_URL) {
     return import.meta.env.VITE_API_BASE_URL;
   }
 
-  // In production (Vercel), use relative API routes
-  if (import.meta.env.PROD) {
-    return '/api/elevenlabs';
+  // Use Vercel API routes by default (works in both dev and production)
+  // In development with Vite dev server, this will proxy to the API routes
+  // In production on Vercel, this will use the deployed API routes
+  if (USE_PROXY) {
+    return `${PROXY_BASE_URL}/api/elevenlabs`;
   }
 
-  // In development, use proxy or direct API
-  return USE_PROXY ? `${PROXY_BASE_URL}/api/elevenlabs` : 'https://api.elevenlabs.io/v1';
+  // Default: Use Vercel API routes (works for both localhost and production)
+  return '/api/elevenlabs';
 };
 
 const API_BASE_URL = getApiBaseUrl();

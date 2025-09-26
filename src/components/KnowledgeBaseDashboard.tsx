@@ -27,6 +27,7 @@ import {
   MapPin,
   X,
   GraduationCap,
+  TestTube
 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -319,6 +320,12 @@ const KnowledgeBaseDashboard = () => {
               <Users className="w-5 h-5 mr-3" />
               Manage Contributors
             </Button>
+            <Link to="/conversation-sync">
+              <Button className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 h-auto font-sf-pro font-medium rounded-full hover:scale-105 transition-transform border-none">
+                <TestTube className="w-5 h-5 mr-3" />
+                Test Transcript Capture
+              </Button>
+            </Link>
           </div>
 
         </div>

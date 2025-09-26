@@ -29,5 +29,101 @@
     <!-- ElevenLabs ConvAI Widget -->
     <elevenlabs-convai agent-id="agent_4301k60jbejbebzr750zdg463tr4"></elevenlabs-convai>
     <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
+
+    <!-- ElevenLabs Widget Event Integration -->
+    <script>
+      // Listen for ElevenLabs widget events and forward them to the React app
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log('🎧 Chronicles ElevenLabs integration loaded');
+
+        // Function to dispatch custom events to the React app
+        function dispatchConversationEvent(type, data) {
+          console.log('📡 Dispatching conversation event:', type, data);
+          window.postMessage({
+            type: type,
+            ...data,
+            source: 'elevenlabs-widget'
+          }, window.location.origin);
+        }
+
+        // Monitor for ElevenLabs widget lifecycle events
+        let widgetCheckInterval = setInterval(() => {
+          const widget = document.querySelector('elevenlabs-convai');
+          if (widget && widget.shadowRoot) {
+            console.log('✅ ElevenLabs widget found, setting up event listeners');
+
+            // Clear the interval once widget is found
+            clearInterval(widgetCheckInterval);
+
+            // Try to access widget events through the shadow DOM or global events
+            // Note: ElevenLabs may expose events differently, this is a general approach
+
+            // Listen for potential widget events on the window
+            window.addEventListener('message', function(event) {
+              if (event.data && event.data.type && event.data.type.startsWith('elevenlabs')) {
+                console.log('🎯 ElevenLabs event detected:', event.data);
+
+                if (event.data.type === 'elevenlabs-call-ended' ||
+                    event.data.type === 'elevenlabs-conversation-ended' ||
+                    event.data.conversationStatus === 'ended') {
+
+                  dispatchConversationEvent('elevenlabs-conversation-ended', {
+                    conversationId: event.data.conversationId || event.data.conversation_id || 'unknown',
+                    agentId: event.data.agentId || event.data.agent_id || 'agent_4301k60jbejbebzr750zdg463tr4',
+                    timestamp: Date.now()
+                  });
+                }
+              }
+            });
+
+            // Also listen for changes in the widget's internal state
+            // This is a fallback approach using mutation observers
+            const observer = new MutationObserver(function(mutations) {
+              mutations.forEach(function(mutation) {
+                // Check if the widget shows a "call ended" or similar state
+                if (mutation.type === 'childList' || mutation.type === 'attributes') {
+                  const widgetContent = widget.shadowRoot ? widget.shadowRoot.textContent : widget.textContent;
+                  if (widgetContent && (
+                    widgetContent.toLowerCase().includes('call ended') ||
+                    widgetContent.toLowerCase().includes('conversation ended') ||
+                    widgetContent.toLowerCase().includes('session complete')
+                  )) {
+                    console.log('🔍 Widget state suggests conversation ended');
+                    // Trigger conversation end event
+                    setTimeout(() => {
+                      dispatchConversationEvent('elevenlabs-conversation-ended', {
+                        conversationId: 'detected_' + Date.now(),
+                        agentId: 'agent_4301k60jbejbebzr750zdg463tr4',
+                        timestamp: Date.now(),
+                        detectionMethod: 'mutation-observer'
+                      });
+                    }, 2000); // Wait 2 seconds for ElevenLabs to process
+                  }
+                }
+              });
+            });
+
+            // Start observing the widget for changes
+            if (widget.shadowRoot) {
+              observer.observe(widget.shadowRoot, {
+                childList: true,
+                subtree: true,
+                attributes: true
+              });
+            }
+            observer.observe(widget, {
+              childList: true,
+              subtree: true,
+              attributes: true
+            });
+          }
+        }, 1000);
+
+        // Clear interval after 30 seconds if widget not found
+        setTimeout(() => {
+          clearInterval(widgetCheckInterval);
+        }, 30000);
+      });
+    </script>
   </body>
 </html>

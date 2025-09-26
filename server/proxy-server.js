@@ -201,7 +201,7 @@ app.get('/api/elevenlabs/agents/:agentId/conversations', async (req, res) => {
       {
         method: 'GET',
         headers: {
-          'Authorization': `Bearer ${ELEVENLABS_API_KEY}`,
+          'xi-api-key': ELEVENLABS_API_KEY,
           'Content-Type': 'application/json',
           'User-Agent': 'Chronicles-Proxy-Server/1.0',
         },
@@ -218,6 +218,64 @@ app.get('/api/elevenlabs/agents/:agentId/conversations', async (req, res) => {
         error: `ElevenLabs API error: ${response.status} ${response.statusText}`,
         details: errorText,
         endpoint: `agents/${agentId}/conversations`
+      });
+    }
+
+    const data = await response.json();
+    console.log(`✅ Found ${data.conversations?.length || 0} conversations`);
+
+    res.json(data);
+
+  } catch (error) {
+    console.error('❌ Proxy error:', error);
+    res.status(500).json({
+      error: 'Proxy server error',
+      details: error.message
+    });
+  }
+});
+
+// Get conversations list (correct ElevenLabs API endpoint)
+app.get('/api/elevenlabs/conversations', async (req, res) => {
+  const { agent_id, page_size = 30, cursor, call_successful } = req.query;
+
+  console.log(`🔄 Fetching conversations list${agent_id ? ` for agent: ${agent_id}` : ''}`);
+
+  try {
+    if (!ELEVENLABS_API_KEY) {
+      return res.status(500).json({
+        error: 'ElevenLabs API key not configured'
+      });
+    }
+
+    // Build query parameters
+    const params = new URLSearchParams();
+    if (agent_id) params.append('agent_id', agent_id);
+    if (page_size) params.append('page_size', page_size.toString());
+    if (cursor) params.append('cursor', cursor);
+    if (call_successful) params.append('call_successful', call_successful);
+
+    const url = `https://api.elevenlabs.io/v1/convai/conversations?${params}`;
+
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'xi-api-key': ELEVENLABS_API_KEY,  // ElevenLabs uses xi-api-key, not Authorization Bearer
+        'Content-Type': 'application/json',
+        'User-Agent': 'Chronicles-Proxy-Server/1.0',
+      },
+    });
+
+    console.log(`📡 ElevenLabs API response: ${response.status} ${response.statusText}`);
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error(`❌ ElevenLabs API error: ${response.status} - ${errorText}`);
+
+      return res.status(response.status).json({
+        error: `ElevenLabs API error: ${response.status} ${response.statusText}`,
+        details: errorText,
+        endpoint: 'conversations'
       });
     }
 
@@ -253,7 +311,7 @@ app.get('/api/elevenlabs/conversations/:conversationId', async (req, res) => {
       {
         method: 'GET',
         headers: {
-          'Authorization': `Bearer ${ELEVENLABS_API_KEY}`,
+          'xi-api-key': ELEVENLABS_API_KEY,
           'Content-Type': 'application/json',
           'User-Agent': 'Chronicles-Proxy-Server/1.0',
         },
@@ -303,7 +361,7 @@ app.get('/api/elevenlabs/agents', async (req, res) => {
       {
         method: 'GET',
         headers: {
-          'Authorization': `Bearer ${ELEVENLABS_API_KEY}`,
+          'xi-api-key': ELEVENLABS_API_KEY,
           'Content-Type': 'application/json',
           'User-Agent': 'Chronicles-Proxy-Server/1.0',
         },
@@ -552,6 +610,7 @@ app.listen(PORT, () => {
   console.log(`📋 Available endpoints:`);
   console.log(`   GET  /api/elevenlabs/agents`);
   console.log(`   GET  /api/elevenlabs/agents/:agentId/conversations`);
+  console.log(`   GET  /api/elevenlabs/conversations`);
   console.log(`   GET  /api/elevenlabs/conversations/:conversationId`);
   console.log(`   POST /api/openai/embeddings`);
   console.log(`\n🔑 Environment check:`);
