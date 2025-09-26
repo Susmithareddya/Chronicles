@@ -1,25 +1,44 @@
 const ELEVENLABS_API_KEY = import.meta.env.VITE_ELEVEN_LABS_API_KEY;
-const ELEVENLABS_API_BASE_URL = 'https://api.elevenlabs.io/v1';
+const PROXY_BASE_URL = import.meta.env.VITE_PROXY_URL || 'http://localhost:3001';
+const USE_PROXY = import.meta.env.VITE_USE_PROXY !== 'false'; // Default to true
 
-if (!ELEVENLABS_API_KEY) {
-  throw new Error('Missing ElevenLabs API key');
-}
+// Determine API base URL - use Vercel API routes in production, proxy in development
+const getApiBaseUrl = () => {
+  // If custom API base URL is set, use it
+  if (import.meta.env.VITE_API_BASE_URL) {
+    return import.meta.env.VITE_API_BASE_URL;
+  }
+
+  // In production (Vercel), use relative API routes
+  if (import.meta.env.PROD) {
+    return '/api/elevenlabs';
+  }
+
+  // In development, use proxy or direct API
+  return USE_PROXY ? `${PROXY_BASE_URL}/api/elevenlabs` : 'https://api.elevenlabs.io/v1';
+};
+
+const API_BASE_URL = getApiBaseUrl();
 
 export interface ConversationHistory {
-  id: string;
+  conversation_id: string;
   agent_id: string;
-  user_id: string;
-  created_at: string;
-  transcript: {
-    messages: Array<{
-      role: 'user' | 'agent';
-      content: string;
-      timestamp: string;
-    }>;
+  user_id?: string;
+  status: string;
+  transcript: Array<{
+    role: 'user' | 'agent';
+    message: string | null;
+    time_in_call_secs: number;
+    [key: string]: any;
+  }>;
+  metadata: {
+    start_time_unix_secs: number;
+    call_duration_secs: number;
+    [key: string]: any;
   };
-  metadata?: {
-    duration_seconds?: number;
-    status?: string;
+  analysis?: {
+    transcript_summary?: string;
+    call_summary_title?: string;
     [key: string]: any;
   };
 }
@@ -27,31 +46,61 @@ export interface ConversationHistory {
 export class ElevenLabsService {
   private apiKey: string;
   private baseUrl: string;
+  private useProxy: boolean;
 
   constructor() {
     this.apiKey = ELEVENLABS_API_KEY;
-    this.baseUrl = ELEVENLABS_API_BASE_URL;
+    this.baseUrl = API_BASE_URL;
+    this.useProxy = USE_PROXY;
   }
 
   /**
-   * Fetch conversation history for a specific agent
+   * Fetch conversation history for a specific agent using the correct ElevenLabs API
    */
-  async getConversationHistory(agentId: string): Promise<ConversationHistory[]> {
+  async getConversationHistory(agentId: string, pageSize: number = 30): Promise<ConversationHistory[]> {
     try {
-      const response = await fetch(`${this.baseUrl}/convai/agents/${agentId}/conversations`, {
+      // In development with proxy or production with Vercel API routes, use simplified endpoint
+      const isUsingApiRoutes = this.baseUrl.includes('/api/elevenlabs') || import.meta.env.PROD;
+
+      const url = isUsingApiRoutes
+        ? `${this.baseUrl}/conversations`
+        : `${this.baseUrl}/convai/conversations`;
+
+      const params = new URLSearchParams({
+        agent_id: agentId,
+        page_size: pageSize.toString(),
+      });
+
+      const fullUrl = `${url}?${params}`;
+
+      const headers: Record<string, string> = {
+        'Content-Type': 'application/json',
+      };
+
+      // Only add auth header if calling ElevenLabs directly (not through proxy/API routes)
+      if (!isUsingApiRoutes && this.apiKey) {
+        headers['xi-api-key'] = this.apiKey;
+      }
+
+      console.log(`🔄 Fetching conversations from: ${fullUrl}`);
+      console.log(`📡 Using proxy: ${this.useProxy}`);
+
+      const response = await fetch(fullUrl, {
         method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${this.apiKey}`,
-          'Content-Type': 'application/json',
-        },
+        headers,
       });
 
       if (!response.ok) {
+        const errorText = await response.text();
+        console.error(`❌ API error: ${response.status} - ${errorText}`);
         throw new Error(`ElevenLabs API error: ${response.status} - ${response.statusText}`);
       }
 
       const data = await response.json();
-      return data.conversations || [];
+      const conversations = data.conversations || [];
+      console.log(`✅ Found ${conversations?.length || 0} conversations for agent ${agentId}`);
+
+      return conversations;
     } catch (error) {
       console.error('Error fetching conversation history:', error);
       throw error;
@@ -59,16 +108,67 @@ export class ElevenLabsService {
   }
 
   /**
+   * Get latest conversations for an agent
+   */
+  async getLatestConversations(agentId: string, limit: number = 10): Promise<ConversationHistory[]> {
+    console.log(`🔍 Fetching latest ${limit} conversations for agent: ${agentId}`);
+
+    // Get the conversation list (which returns conversation summaries)
+    const conversations = await this.getConversationHistory(agentId, limit);
+
+    if (conversations.length === 0) {
+      return [];
+    }
+
+    // Get full conversation details for each conversation
+    const fullConversations = await Promise.all(
+      conversations.map(async (conv: any) => {
+        try {
+          return await this.getConversation(conv.conversation_id);
+        } catch (error) {
+          console.warn(`Failed to fetch conversation ${conv.conversation_id}:`, error);
+          return null;
+        }
+      })
+    );
+
+    return fullConversations.filter(conv => conv !== null) as ConversationHistory[];
+  }
+
+  /**
+   * Get the single most recent conversation for an agent
+   */
+  async getLatestConversation(agentId: string): Promise<ConversationHistory | null> {
+    console.log(`🔍 Fetching latest conversation for agent: ${agentId}`);
+
+    const conversations = await this.getLatestConversations(agentId, 1);
+    return conversations.length > 0 ? conversations[0] : null;
+  }
+
+  /**
    * Fetch a specific conversation by ID
    */
   async getConversation(conversationId: string): Promise<ConversationHistory | null> {
     try {
-      const response = await fetch(`${this.baseUrl}/convai/conversations/${conversationId}`, {
+      // In development with proxy or production with Vercel API routes, use simplified endpoint
+      const isUsingApiRoutes = this.baseUrl.includes('/api/elevenlabs') || import.meta.env.PROD;
+
+      const url = isUsingApiRoutes
+        ? `${this.baseUrl}/conversations/${conversationId}`
+        : `${this.baseUrl}/convai/conversations/${conversationId}`;
+
+      const headers: Record<string, string> = {
+        'Content-Type': 'application/json',
+      };
+
+      // Only add auth header if calling ElevenLabs directly (not through proxy/API routes)
+      if (!isUsingApiRoutes && this.apiKey) {
+        headers['xi-api-key'] = this.apiKey;
+      }
+
+      const response = await fetch(url, {
         method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${this.apiKey}`,
-          'Content-Type': 'application/json',
-        },
+        headers,
       });
 
       if (!response.ok) {
@@ -89,13 +189,14 @@ export class ElevenLabsService {
    * Convert conversation history to readable text format
    */
   formatConversationText(conversation: ConversationHistory): string {
-    const messages = conversation.transcript.messages || [];
+    const transcript = conversation.transcript || [];
 
-    return messages
-      .map(message => {
-        const timestamp = new Date(message.timestamp).toLocaleString();
-        const speaker = message.role === 'agent' ? 'Agent' : 'User';
-        return `[${timestamp}] ${speaker}: ${message.content}`;
+    return transcript
+      .filter(entry => entry.message) // Only include entries with actual messages
+      .map(entry => {
+        const timestamp = `${Math.floor(entry.time_in_call_secs)}s`;
+        const speaker = entry.role === 'agent' ? 'Agent' : 'User';
+        return `[${timestamp}] ${speaker}: ${entry.message}`;
       })
       .join('\n\n');
   }
@@ -109,8 +210,11 @@ export class ElevenLabsService {
     participantCount: number;
     duration: number;
   } {
-    const messages = conversation.transcript.messages || [];
-    const messageTexts = messages.map(m => m.content).join(' ');
+    const transcript = conversation.transcript || [];
+    const messageTexts = transcript
+      .filter(entry => entry.message)
+      .map(entry => entry.message)
+      .join(' ');
 
     // Simple keyword extraction (you might want to use a more sophisticated NLP approach)
     const words = messageTexts.toLowerCase().split(/\W+/);
@@ -128,10 +232,10 @@ export class ElevenLabsService {
       .map(([word]) => word);
 
     return {
-      summary: messageTexts.substring(0, 500) + (messageTexts.length > 500 ? '...' : ''),
+      summary: conversation.analysis?.transcript_summary || messageTexts.substring(0, 500) + (messageTexts.length > 500 ? '...' : ''),
       keyTopics,
-      participantCount: new Set(messages.map(m => m.role)).size,
-      duration: conversation.metadata?.duration_seconds || 0,
+      participantCount: new Set(transcript.map(entry => entry.role)).size,
+      duration: conversation.metadata?.call_duration_secs || 0,
     };
   }
 }
