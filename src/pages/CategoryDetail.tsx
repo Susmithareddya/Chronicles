@@ -84,7 +84,7 @@ const CategoryDetail = () => {
           {stories.map((story) => (
             <Card 
               key={story.id}
-              className="cursor-pointer group relative overflow-hidden bg-white border border-slate-200 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300"
+              className="cursor-pointer group relative overflow-hidden bg-white border border-slate-200 rounded-3xl shadow-lg hover:shadow-2xl hover:-translate-y-2 hover:scale-105 transition-all duration-300"
               onClick={() => setSelectedStory(story.id)}
             >
               <CardContent className="p-6 relative z-10">
