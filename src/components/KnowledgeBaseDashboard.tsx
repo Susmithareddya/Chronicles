@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { StoryCard, Story } from "@/components/StoryCard";
 import { getStoriesForCategory, calculateStatusCounts } from "@/data/storiesData";
+
 import { ConversationCompletedPopup } from "@/components/ConversationCompletedPopup";
 import { useConversationCompleted } from "@/hooks/useConversationCompleted";
 import {
@@ -30,12 +31,12 @@ import {
   GraduationCap,
   TestTube
 } from "lucide-react";
-import { cn } from "@/lib/utils";
 
+import { cn } from "@/lib/utils";
 const KnowledgeBaseDashboard = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [showChristopherCard, setShowChristopherCard] = useState(false);
-
+  
   // Conversation completed hook
   const conversationCompleted = useConversationCompleted();
 
@@ -83,19 +84,26 @@ const KnowledgeBaseDashboard = () => {
       bgColor: "bg-yellow-50",
     }
   ].map(category => {
+
     const stories = getStoriesForCategory(category.title);
     const statusCounts = calculateStatusCounts(stories);
     return {
       ...category,
       totalStories: stories.length,
-      completionRate: stories.length > 0 ? Math.round((statusCounts.complete / stories.length) * 100) : 0,
+      completionRate: stories.length > 0 ? Math.round(statusCounts.complete / stories.length * 100) : 0,
       statusCounts,
       stories
     };
   });
-
-  const StatusIndicators = ({ counts }: { counts: { complete: number, progress: number, incomplete: number } }) => (
-     <div className="flex items-center gap-3">
+  const StatusIndicators = ({
+    counts
+  }: {
+    counts: {
+      complete: number;
+      progress: number;
+      incomplete: number;
+    };
+  }) => <div className="flex items-center gap-3">
        <div className="flex items-center gap-2">
          <span className="text-emerald-600 font-medium text-sm font-sf-pro">{counts.complete}</span>
          <div className="status-dot status-complete"></div>
@@ -104,11 +112,8 @@ const KnowledgeBaseDashboard = () => {
          <span className="text-amber-600 font-medium text-sm font-sf-pro">{counts.progress}</span>
          <div className="status-dot status-progress"></div>
        </div>
-     </div>
-  );
-
-  return (
-    <div className="min-h-screen relative overflow-hidden">
+     </div>;
+  return <div className="min-h-screen relative overflow-hidden">
       {/* Liquid Glass Background Gradient Splash */}
       <div className="fixed top-0 right-0 w-96 h-96 opacity-30 pointer-events-none">
         <div className="liquid-glass-splash"></div>
@@ -120,17 +125,13 @@ const KnowledgeBaseDashboard = () => {
             {/* Logo */}
             <div className="flex items-center space-x-3">
               <div className="logo-icon">
-                <img 
-                  src="/src/assets/logo-sign-2.svg" 
-                  alt="Chronicles Logo" 
-                  className="w-12 h-12 object-contain"
-                />
+                <img src="/src/assets/logo-sign-2.svg" alt="Chronicles Logo" className="w-12 h-12 object-contain" />
               </div>
               <div className="logo-container">
                 <div className="logo-main font-sf-pro font-bold text-slate-800">
                   Chronicles
                 </div>
-                <div className="logo-subtitle font-sf-pro font-medium text-slate-500">
+                <div className="logo-subtitle font-sf-pro font-medium text-slate-500 mx-[2px]">
                   Corporate Knowledge Base
                 </div>
               </div>
@@ -140,12 +141,7 @@ const KnowledgeBaseDashboard = () => {
             <div className="flex-1 max-w-lg">
               <div className="relative group">
                 <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-slate-400 group-hover:text-slate-400 w-5 h-5" />
-                <Input 
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search stories, topics, or insights..."
-                  className="glass-input pl-12 h-11 text-slate-800 placeholder:text-slate-500 text-base font-sf-pro font-normal"
-                />
+                <Input value={searchQuery} onChange={e => setSearchQuery(e.target.value)} placeholder="Search stories, topics, or insights..." className="glass-input pl-12 h-11 text-slate-800 placeholder:text-slate-500 text-base font-sf-pro font-normal" />
               </div>
             </div>
 
@@ -168,34 +164,23 @@ const KnowledgeBaseDashboard = () => {
         {/* Apple Glass Page Header */}
         <div className="mb-12">
           <h2 className="text-4xl font-semibold text-slate-800 mb-2 font-sf-pro">
-            Stories of <span 
-              className="text-blue-600 cursor-pointer hover:text-blue-700 transition-colors"
-              onClick={() => setShowChristopherCard(!showChristopherCard)}
-            >
+            Stories of <span className="text-blue-600 cursor-pointer hover:text-blue-700 transition-colors" onClick={() => setShowChristopherCard(!showChristopherCard)}>
               Christopher Becker
             </span>
           </h2>
           
           {/* Glass Christopher Becker Card */}
-          {showChristopherCard && (
-            <Card className="glass-card absolute z-50 -mt-2 max-w-md animate-fade-in">
+          {showChristopherCard && <Card className="glass-card absolute z-50 -mt-2 max-w-md animate-fade-in">
               <CardContent className="p-8 shadow-2xl shadow-black/10">
                   <div className="flex items-start justify-between mb-6">
                   <div className="flex items-center gap-4">
-                    <img 
-                      src="/src/assets/christopher-becker-avatar.jpg" 
-                      alt="Christopher Becker" 
-                      className="w-16 h-16 rounded-full object-cover border-2 border-white/30"
-                    />
+                    <img src="/src/assets/christopher-becker-avatar.jpg" alt="Christopher Becker" className="w-16 h-16 rounded-full object-cover border-2 border-white/30" />
                     <div>
                       <h3 className="text-xl font-semibold text-slate-800 font-sf-pro">Christopher Becker</h3>
                       <p className="text-blue-600 font-medium font-sf-pro">Head of Product</p>
                     </div>
                   </div>
-                  <button 
-                    onClick={() => setShowChristopherCard(false)}
-                    className="text-slate-400 hover:text-slate-600 transition-colors"
-                  >
+                  <button onClick={() => setShowChristopherCard(false)} className="text-slate-400 hover:text-slate-600 transition-colors">
                     <X className="w-5 h-5" />
                   </button>
                 </div>
@@ -215,8 +200,7 @@ const KnowledgeBaseDashboard = () => {
                   </div>
                 </div>
               </CardContent>
-            </Card>
-          )}
+            </Card>}
           <p className="text-lg text-slate-600 max-w-3xl font-sf-pro font-light">
             Capturing and organizing critical knowledge from our Head of Product
           </p>
@@ -227,16 +211,10 @@ const KnowledgeBaseDashboard = () => {
           <h3 className="text-xl font-semibold text-slate-800/70 mb-5 font-sf-pro">Knowledge Categories</h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {knowledgeCategories.map((category, index) => (
-              <Link 
-                key={category.title}
-                to={`/category/${encodeURIComponent(category.title)}`}
-                className="block"
-              >
-                <Card 
-                  className="knowledge-card animate-slide-up cursor-pointer h-full"
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
+            {knowledgeCategories.map((category, index) => <Link key={category.title} to={`/category/${encodeURIComponent(category.title)}`} className="block">
+                <Card className="knowledge-card animate-slide-up cursor-pointer h-full hover:shadow-2xl hover:-translate-y-1 hover:scale-105 transition-all duration-300" style={{
+              animationDelay: `${index * 100}ms`
+            }}>
                  <CardContent className="p-8 flex flex-col h-full">
                     <div className="flex-1 space-y-6">
                       {/* Glass Header */}
@@ -274,18 +252,15 @@ const KnowledgeBaseDashboard = () => {
                     </div>
                  </CardContent>
                </Card>
-              </Link>
-            ))}
+              </Link>)}
           </div>
         </div>
 
         {/* Glass Action Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Knowledge Gaps */}
-          <Card 
-            className="alert-warning"
-            onClick={() => console.log('Knowledge gaps clicked')}
-          >
+          <Link to="/knowledge-gaps">
+            <Card className="alert-warning cursor-pointer">
             <CardContent className="p-8">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0">
@@ -298,19 +273,16 @@ const KnowledgeBaseDashboard = () => {
                   <p className="text-amber-800 text-base mb-4 font-sf-pro font-light">
                     We've identified areas where critical knowledge may be missing or incomplete.
                   </p>
-                  <Badge className="bg-amber-50 text-amber-700 px-4 py-2 text-sm font-sf-pro font-medium rounded-full border-none">
-                    4 gaps found
-                  </Badge>
+                  <Badge className="bg-amber-50 text-amber-700 px-4 py-2 text-sm font-sf-pro font-medium rounded-full border-none">4 gaps found</Badge>
                 </div>
               </div>
             </CardContent>
           </Card>
+          </Link>
 
           {/* AI Suggestions */}
-          <Card 
-            className="alert-info"
-            onClick={() => console.log('AI suggestions clicked')}
-          >
+          <Link to="/ai-suggestions">
+            <Card className="alert-info cursor-pointer">
             <CardContent className="p-8">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0">
@@ -330,6 +302,7 @@ const KnowledgeBaseDashboard = () => {
               </div>
             </CardContent>
           </Card>
+          </Link>
         </div>
 
         {/* Apple Glass Quick Actions */}
@@ -367,5 +340,4 @@ const KnowledgeBaseDashboard = () => {
     </div>
   );
 };
-
 export default KnowledgeBaseDashboard;

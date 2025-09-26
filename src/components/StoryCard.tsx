@@ -2,6 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Calendar, Clock, FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useNavigate } from "react-router-dom";
 
 export interface Story {
   id: string;
@@ -15,10 +16,20 @@ export interface Story {
 
 interface StoryCardProps {
   story: Story;
+  categoryName: string;
   onClick?: () => void;
 }
 
-export const StoryCard = ({ story, onClick }: StoryCardProps) => {
+export const StoryCard = ({ story, categoryName, onClick }: StoryCardProps) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (onClick) {
+      onClick();
+    } else {
+      navigate(`/category/${encodeURIComponent(categoryName)}/story/${story.id}`);
+    }
+  };
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'complete':
@@ -39,7 +50,7 @@ export const StoryCard = ({ story, onClick }: StoryCardProps) => {
       case 'progress':
         return 'In Progress';
       case 'incomplete':
-        return 'Draft';
+        return 'In Progress';
       default:
         return 'Unknown';
     }
@@ -47,8 +58,8 @@ export const StoryCard = ({ story, onClick }: StoryCardProps) => {
 
   return (
     <Card 
-      className="story-card cursor-pointer transition-all duration-200 hover:shadow-md border border-slate-200 hover:border-slate-300"
-      onClick={onClick}
+      className="story-card cursor-pointer transition-all duration-200 hover:shadow-md border border-slate-200 hover:border-slate-300 hover-scale"
+      onClick={handleClick}
     >
       <CardContent className="p-4">
         <div className="flex items-start justify-between mb-3">
@@ -62,7 +73,7 @@ export const StoryCard = ({ story, onClick }: StoryCardProps) => {
           </div>
           <Badge 
             className={cn(
-              "ml-3 text-xs px-2 py-1 rounded-full border font-sf-pro font-medium flex-shrink-0",
+              "ml-3 text-xs px-2 py-1 rounded-full border font-sf-pro font-medium flex-shrink-0 pointer-events-none",
               getStatusColor(story.status)
             )}
           >

@@ -49,18 +49,18 @@ const CategoryDetail = () => {
       case 'progress':
         return 'In Progress';
       case 'incomplete':
-        return 'Draft';
+        return 'In Progress';
       default:
         return 'Unknown';
     }
   };
 
   return (
-    <div className="min-h-screen relative overflow-hidden" style={{ background: 'var(--gradient-bg)' }}>
+    <div className="min-h-screen relative overflow-hidden animate-fade-in" style={{ background: 'var(--gradient-bg)' }}>
       {/* Liquid Glass Background Splash */}
       <div className="absolute inset-0 liquid-glass-splash opacity-40"></div>
       
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-slide-up">
         {/* Header */}
         <div className="mb-8">
           <Link 
@@ -84,8 +84,10 @@ const CategoryDetail = () => {
           {stories.map((story) => (
             <Card 
               key={story.id}
-              className="cursor-pointer group relative overflow-hidden bg-white border border-slate-200 hover:border-slate-300 rounded-3xl shadow-md hover:shadow-lg transition-all duration-300"
-              onClick={() => setSelectedStory(story.id)}
+              className="cursor-pointer group relative overflow-hidden bg-white border border-slate-200 rounded-3xl shadow-lg hover:shadow-2xl hover:-translate-y-1 hover:scale-105 transition-all duration-300"
+              onClick={() => {
+                window.location.href = `/category/${encodeURIComponent(decodedCategoryName)}/story/${story.id}`;
+              }}
             >
               <CardContent className="p-6 relative z-10">
                 {/* Story Header */}
@@ -96,9 +98,9 @@ const CategoryDetail = () => {
                   
                   <Badge 
                     className={cn(
-                      "glass-status-badge px-2 py-1 text-xs font-medium rounded-full border-0 backdrop-blur-md transition-all duration-200",
-                      story.status === 'complete' && "bg-emerald-100/80 text-emerald-800 shadow-emerald-200/50",
-                      story.status === 'progress' && "bg-amber-100/80 text-amber-800 shadow-amber-200/50"
+                      "glass-status-badge px-2 py-1 text-xs font-medium rounded-full border-0 backdrop-blur-md pointer-events-none",
+                      story.status === 'complete' && "bg-emerald-100/80 text-emerald-700 shadow-emerald-200/50",
+                      (story.status === 'progress' || story.status === 'incomplete') && "bg-amber-100/80 text-amber-700 shadow-amber-200/50"
                     )}
                   >
                     {getStatusLabel(story.status)}
@@ -106,8 +108,8 @@ const CategoryDetail = () => {
                 </div>
 
                 {/* Date */}
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="p-2 rounded-lg bg-white/60 backdrop-blur-sm border border-white/20">
+                <div className="flex items-center gap-2 mb-5">
+                  <div className="p-1">
                     <Calendar className="w-4 h-4 text-slate-600" />
                   </div>
                   <span className="text-sm text-slate-600 font-medium">{story.date}</span>
