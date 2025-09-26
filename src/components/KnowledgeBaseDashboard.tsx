@@ -7,8 +7,6 @@ import { Button } from "@/components/ui/button";
 import { StoryCard, Story } from "@/components/StoryCard";
 import { getStoriesForCategory, calculateStatusCounts } from "@/data/storiesData";
 
-import { ConversationCompletedPopup } from "@/components/ConversationCompletedPopup";
-import { useConversationCompleted } from "@/hooks/useConversationCompleted";
 import {
   Search,
   Star,
@@ -29,7 +27,6 @@ import {
   MapPin,
   X,
   GraduationCap,
-  TestTube
 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -37,8 +34,6 @@ const KnowledgeBaseDashboard = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [showChristopherCard, setShowChristopherCard] = useState(false);
   
-  // Conversation completed hook
-  const conversationCompleted = useConversationCompleted();
 
   const knowledgeCategories = [
     {
@@ -324,23 +319,11 @@ const KnowledgeBaseDashboard = () => {
               <Users className="w-5 h-5 mr-3" />
               Manage Contributors
             </Button>
-            <Button
-              onClick={conversationCompleted.triggerConversationCompleted}
-              className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 h-auto font-sf-pro font-medium rounded-full hover:scale-105 transition-transform border-none"
-            >
-              <TestTube className="w-5 h-5 mr-3" />
-              Test Call End Popup
-            </Button>
           </div>
 
         </div>
       </main>
 
-      {/* Conversation Completed Popup */}
-      <ConversationCompletedPopup
-        isOpen={conversationCompleted.showPopup}
-        onClose={conversationCompleted.closePopup}
-      />
     </div>
   );
 };
