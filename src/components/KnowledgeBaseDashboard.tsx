@@ -94,7 +94,7 @@ const KnowledgeBaseDashboard = () => {
                 <div className="logo-main font-sf-pro font-bold text-slate-800">
                   Chronicles
                 </div>
-                <div className="logo-subtitle font-sf-pro font-medium text-slate-500">
+                <div className="logo-subtitle font-sf-pro font-medium text-slate-500 mx-[2px]">
                   Corporate Knowledge Base
                 </div>
               </div>
